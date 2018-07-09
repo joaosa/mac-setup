@@ -15,6 +15,5 @@ git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
 # zsh
 brew install zsh
 # prezto
-zsh
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+zsh -c "git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto""
 brew install fasd
