@@ -57,6 +57,8 @@ brew install pyenv-virtualenv
 
 # vim+tmux
 brew install neovim
+# vim-plugged
+curl -fLo ~/.config/nvim/autoload/plug.vim —create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 brew install tmux
 brew cask install karabiner-elements
 brew install ctags-exuberant
