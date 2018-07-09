@@ -1,9 +1,6 @@
 # abort if something fails
 set -e
 
-# xcode dev tools
-xcode-select --install
-
 # homebrew + brew cask
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
