@@ -51,6 +51,10 @@ brew install postgresql
 brew cask install virtualbox
 brew install docker docker-compose boot2docker
 
+# python
+brew install pyenv
+brew install pyenv-virtualenv
+
 # vim+tmux
 brew install neovim
 brew cask install karabiner-elements
