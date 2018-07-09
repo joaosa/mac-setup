@@ -57,6 +57,7 @@ brew install pyenv-virtualenv
 
 # vim+tmux
 brew install neovim
+brew install tmux
 brew cask install karabiner-elements
 brew install ctags-exuberant
 brew install rainbarf
