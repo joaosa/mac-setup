@@ -11,6 +11,7 @@ brew install hub
 
 # dotfiles
 git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # zsh
 brew install zsh
