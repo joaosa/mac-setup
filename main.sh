@@ -64,6 +64,9 @@ brew install urlview
 
 # terminal app
 brew cask install iterm2
+# fonts
+brew tap caskroom/fonts
+brew cask install font-sourcecodepro-nerd-font
 
 # evernote
 brew cask install evernote
