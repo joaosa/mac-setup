@@ -47,3 +47,29 @@ brew install pgp2
 brew install unrar
 brew cask install wireshark
 brew install postgresql
+# docker
+brew cask install virtualbox
+brew install docker docker-compose boot2docker
+
+# vim+tmux
+brew install neovim
+brew cask install seil
+brew cask install karabiner
+brew install ctags-exuberant
+brew install rainbarf
+brew install urlview
+
+# terminal app
+brew cask install iterm2
+
+# evernote
+brew cask install evernote
+pip install git+https://github.com/jeffkowalski/geeknote
+
+# window management
+brew cask install hammerspoon
+
+# apps
+brew install flux
+brew cask install firefoxdeveloperedition
+brew cask install google-chrome-aurora
