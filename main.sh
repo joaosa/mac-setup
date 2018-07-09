@@ -78,6 +78,6 @@ brew cask install hammerspoon
 # apps
 brew cask install flux
 brew tap caskroom/versions
-brew cask install firefoxdeveloperedition
+brew cask install firefox-developer-edition
 brew cask install google-chrome-canary
 brew cask install slack
