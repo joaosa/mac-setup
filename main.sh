@@ -41,7 +41,7 @@ brew install fortune
 brew install tcptraceroute
 brew install watch
 brew install pv
-brew install ngrok
+brew cask install ngrok
 brew install nmap
 brew install pgp2
 brew install unrar
