@@ -81,3 +81,4 @@ brew tap caskroom/versions
 brew cask install firefox-developer-edition
 brew cask install google-chrome-canary
 brew cask install slack
+brew cask install caffeine
