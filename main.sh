@@ -1,3 +1,6 @@
+# abort if something fails
+set -e
+
 # xcode dev tools
 xcode-select --install
 
