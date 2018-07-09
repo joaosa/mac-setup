@@ -29,3 +29,21 @@ git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # console tools
+brew install ag
+brew tap aykamko/tag-ag
+brew install tag-ag
+brew install rg
+# fzf
+brew install fzf
+$(brew --prefix)/opt/fzf/install
+brew install ssh-copy-id
+brew install fortune
+brew install tcptraceroute
+brew install watch
+brew install pv
+brew install ngrok
+brew install nmap
+brew install pgp2
+brew install unrar
+brew cask install wireshark
+brew install postgresql
