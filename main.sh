@@ -53,8 +53,7 @@ brew install docker docker-compose boot2docker
 
 # vim+tmux
 brew install neovim
-brew cask install seil
-brew cask install karabiner
+brew cask install karabiner-elements
 brew install ctags-exuberant
 brew install rainbarf
 brew install urlview
