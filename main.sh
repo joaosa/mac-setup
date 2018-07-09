@@ -76,3 +76,4 @@ brew cask install hammerspoon
 brew cask install flux
 brew cask install firefoxdeveloperedition
 brew cask install google-chrome-aurora
+brew cask install slack
