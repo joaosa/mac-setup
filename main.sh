@@ -69,6 +69,6 @@ pip install git+https://github.com/jeffkowalski/geeknote
 brew cask install hammerspoon
 
 # apps
-brew install flux
+brew cask install flux
 brew cask install firefoxdeveloperedition
 brew cask install google-chrome-aurora
