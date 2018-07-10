@@ -30,6 +30,7 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedF
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # console tools
+brew install latex-mk
 brew install ag
 brew tap aykamko/tag-ag
 brew install tag-ag
