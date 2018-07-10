@@ -60,6 +60,7 @@ echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
 brew install pyenv
 brew install pyenv-virtualenv
 # python for vim deoplete
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 pyenv install 2.7.15 --skip-existing
 pyenv virtualenv 2.7.15 neovim-python2 --force
 pyenv activate neovim-python2
