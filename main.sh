@@ -26,6 +26,7 @@ brew install fasd
 # dotfiles
 rm -rf ~/.cfg
 git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # console tools
