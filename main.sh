@@ -54,6 +54,9 @@ brew install docker docker-compose boot2docker
 # python
 brew install pyenv
 brew install pyenv-virtualenv
+pyenv virtualenv neovim-python2
+pyenv install 3.5.2
+pyenv virtualenv 3.5.2 neovim-python3
 
 # vim+tmux
 brew install neovim
