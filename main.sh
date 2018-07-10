@@ -54,6 +54,7 @@ brew install docker docker-compose boot2docker
 
 # node
 brew install node@8
+echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
 
 # python
 brew install pyenv
