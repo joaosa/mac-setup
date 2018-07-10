@@ -75,7 +75,10 @@ EOF
 
 # latex
 brew cask install basictex
-zsh -c "sudo tlmgr install latexmk"
+zsh << EOF
+ sudo tlmgr init-usertree
+ sudo tlmgr install latexmk
+EOF
 
 # vim+tmux
 brew install neovim
