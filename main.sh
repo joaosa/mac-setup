@@ -60,13 +60,15 @@ echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
 brew install pyenv
 brew install pyenv-virtualenv
 # python for vim deoplete
-pyenv virtualenv neovim-python2 --force
+pyenv install 2.7.15 --skip-existing
+pyenv virtualenv 2.7.15 neovim-python2 --force
 pyenv activate neovim-python2
 pip install neovim
+pyenv activate --unset
 pyenv install 3.5.2 --skip-existing
 pyenv virtualenv 3.5.2 neovim-python3 --force
 pyenv activate neovim-python3
-pip3 install neovim
+pip install neovim
 pyenv activate --unset
 
 # vim+tmux
