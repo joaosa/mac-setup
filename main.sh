@@ -63,7 +63,7 @@ brew install pyenv-virtualenv
 pyenv virtualenv neovim-python2
 pyenv activate neovim-python2
 pip install neovim
-pyenv install 3.5.2
+pyenv install 3.5.2 --skip-existing
 pyenv virtualenv 3.5.2 neovim-python3
 pyenv activate neovim-python3
 pip3 install neovim
