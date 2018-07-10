@@ -35,7 +35,7 @@ brew install tag-ag
 brew install rg
 # fzf
 brew install fzf
-$(brew --prefix)/opt/fzf/install --no-bash --no-zsh
+$(brew --prefix)/opt/fzf/install --all
 brew install ssh-copy-id
 brew install fortune
 brew install tcptraceroute
