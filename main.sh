@@ -79,6 +79,8 @@ brew cask install karabiner-elements
 brew install ctags-exuberant
 brew install rainbarf
 brew install urlview
+# tmux clipboard macOS shizzle
+brew install reattach-to-user-namespace
 
 # terminal app
 brew cask install iterm2
