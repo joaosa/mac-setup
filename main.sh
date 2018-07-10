@@ -66,7 +66,7 @@ pip install neovim
 pyenv install 3.5.2
 pyenv virtualenv 3.5.2 neovim-python3
 pyenv activate neovim-python3
-pip install neovim
+pip3 install neovim
 pyenv activate --unset
 
 # vim+tmux
