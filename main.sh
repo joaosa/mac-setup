@@ -77,6 +77,7 @@ EOF
 brew cask install basictex
 zsh << EOF
  sudo tlmgr init-usertree
+ sudo tlmgr update --self
  sudo tlmgr install latexmk
 EOF
 
