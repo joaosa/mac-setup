@@ -96,7 +96,6 @@ nvim -c ":UpdateRemotePlugins | :qa"
 brew cask install iterm2
 # fonts
 brew tap caskroom/fonts
-brew cask install font-source-code-pro
 brew cask install font-sourcecodepro-nerd-font
 
 # evernote
