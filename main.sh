@@ -51,6 +51,9 @@ brew install postgresql
 brew cask install virtualbox
 brew install docker docker-compose boot2docker
 
+# node
+brew install node@8
+
 # python
 brew install pyenv
 brew install pyenv-virtualenv
