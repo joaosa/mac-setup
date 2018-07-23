@@ -80,6 +80,9 @@ pip install neovim
 pyenv activate --unset
 EOF
 
+# aws
+pip install awscli
+
 # latex
 brew cask install basictex
 zsh << EOF
