@@ -55,6 +55,7 @@ brew install --HEAD xhyve
 brew install docker docker-compose docker-machine docker-machine-driver-xhyve
 sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
 
 # vpn
 brew install openvpn
