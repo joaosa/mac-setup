@@ -5,6 +5,7 @@ set -ef
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # git
+git config --global core.excludesfile ~/.gitignore_global
 brew install git-flow-avh
 brew install git-extras
 brew install hub
