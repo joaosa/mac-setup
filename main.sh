@@ -52,6 +52,10 @@ brew install postgresql
 brew cask install virtualbox
 brew install docker docker-compose boot2docker
 
+# vpn
+brew install openvpn
+brewk cask install tunnelblick
+
 # node
 brew install node@8
 echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
