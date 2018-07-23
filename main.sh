@@ -30,9 +30,7 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedF
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # console tools
-brew install ag
-brew tap aykamko/tag-ag
-brew install tag-ag
+brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg
 # fzf
 brew install fzf && $(brew --prefix)/opt/fzf/install --all
