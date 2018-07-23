@@ -48,6 +48,8 @@ brew install gnupg
 brew install unrar
 brew cask install wireshark
 brew install postgresql
+# kafka
+brew install kafkacat
 # docker
 brew cask install virtualbox
 brew install docker docker-compose boot2docker
