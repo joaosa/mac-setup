@@ -39,6 +39,7 @@ brew install ssh-copy-id
 brew install fortune
 brew install tcptraceroute
 brew install watch
+brew install jq
 brew install pv
 brew cask install ngrok
 brew install nmap
