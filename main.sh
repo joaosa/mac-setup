@@ -60,6 +60,9 @@ docker-machine ls -q | grep '^default$' || docker-machine create default --drive
 brew install openvpn
 brewk cask install tunnelblick
 
+# go
+brew install go
+
 # node
 brew install node@8
 echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
