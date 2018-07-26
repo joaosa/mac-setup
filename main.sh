@@ -33,6 +33,7 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 # console tools
 brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg
+brew install parallel
 brew install ssh-copy-id
 brew install fortune
 brew install tcptraceroute
