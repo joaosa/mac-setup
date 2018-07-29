@@ -29,6 +29,8 @@ rm -rf ~/.cfg
 git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
+# use ssh auth
+sed -i -e "s/https:\/\/github.com\//git@github.com:/" ~/.cfg/config
 
 # console tools
 brew tap aykamko/tag-ag && brew install tag-ag
