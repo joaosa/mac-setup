@@ -31,6 +31,7 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedF
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 # use ssh auth
 sed -i -e "s/https:\/\/github.com\//git@github.com:/" ~/.cfg/config
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME push -u origin master
 
 # console tools
 brew tap aykamko/tag-ag && brew install tag-ag
