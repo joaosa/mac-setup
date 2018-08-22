@@ -38,6 +38,7 @@ brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg
 brew install parallel
 brew install ssh-copy-id
+brew install pwgen
 brew install fortune
 brew install tcptraceroute
 brew install watch
