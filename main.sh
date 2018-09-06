@@ -137,3 +137,4 @@ brew cask install slack
 brew cask install caffeine
 brew cask install spotify
 brew cask install spotifree
+brew cask install vlc
