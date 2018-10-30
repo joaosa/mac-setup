@@ -66,6 +66,8 @@ brewk cask install tunnelblick
 
 # go
 brew install go
+brew tap alecthomas/homebrew-tap
+brew install gometaliner
 
 # node
 brew install node@8
