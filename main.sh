@@ -53,6 +53,8 @@ brew cask install wireshark
 brew install postgresql
 # kafka
 brew install kafkacat
+# terraform
+brew install terraform
 # docker
 brew install --HEAD xhyve
 brew install docker docker-compose docker-machine docker-machine-driver-xhyve
