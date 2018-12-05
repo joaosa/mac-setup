@@ -51,6 +51,9 @@ brew install gnupg
 brew install unrar
 brew cask install wireshark
 brew install postgresql
+# video
+brew cask install vlc
+brew install youtube-dl
 # kafka
 brew install kafkacat
 # terraform
@@ -141,4 +144,3 @@ brew cask install slack
 brew cask install caffeine
 brew cask install spotify
 brew cask install spotifree
-brew cask install vlc
