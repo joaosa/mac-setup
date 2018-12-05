@@ -81,7 +81,8 @@ echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
 # python
 brew install pyenv
 brew install pyenv-virtualenv
-# python for vim deoplete
+brew install pyflake
+# python for vim support
 pyenv install 2.7.15 --skip-existing
 pyenv virtualenv 2.7.15 neovim-python2 --force
 pyenv install 3.5.2 --skip-existing
@@ -90,9 +91,9 @@ zsh << EOF
 eval $(pyenv init -)
 eval $(pyenv virtualenv-init -)
 pyenv activate neovim-python2
-pip install neovim
+pip install neovim flake8
 pyenv activate neovim-python3
-pip install neovim
+pip install neovim flake8
 pyenv activate --unset
 EOF
 
