@@ -131,7 +131,6 @@ brew cask install font-sourcecodepro-nerd-font
 
 # evernote
 brew cask install evernote
-pip install git+https://github.com/jeffkowalski/geeknote
 
 # window management
 brew cask install hammerspoon
