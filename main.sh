@@ -116,6 +116,7 @@ brew install neovim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
 brew install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 brew cask install karabiner-elements
 brew install ctags-exuberant
 brew install rainbarf
