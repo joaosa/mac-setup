@@ -44,7 +44,7 @@ brew install pwgen
 brew install fortune
 brew install tcptraceroute
 brew install watch
-brew install jq
+brew install jq python-yq
 brew install httpie
 brew install pv
 brew cask install ngrok
