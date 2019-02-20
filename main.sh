@@ -37,6 +37,7 @@ git --git-dir=$HOME/.cfg/ --work-tree=$HOME push -u origin master
 brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg
 brew install gnu-units
+brew install slhck/moreutils/moreutils -- --without-parallel
 brew install parallel
 brew install ssh-copy-id
 brew install pwgen
