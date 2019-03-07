@@ -38,6 +38,7 @@ brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg -- --with-pcre2
 brew install gnu-units
 brew install slhck/moreutils/moreutils -- --without-parallel
+brew install gnu-tee
 brew install parallel
 brew install ssh-copy-id
 brew install pwgen
