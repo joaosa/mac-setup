@@ -43,6 +43,7 @@ brew install parallel
 brew install ssh-copy-id
 brew install pwgen
 brew install fortune
+brew install wget
 brew install tcptraceroute
 brew install watch
 brew install jq python-yq
