@@ -42,6 +42,7 @@ brew install gnu-tee
 brew install parallel
 brew install ssh-copy-id
 brew install pwgen
+brew install direnv && echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
 brew install fortune
 brew install wget
 brew install tcptraceroute
