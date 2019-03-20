@@ -105,6 +105,9 @@ EOF
 # aws
 pip install awscli
 
+# virtualbox
+brew cask install virtualbox
+
 # latex
 brew cask install basictex
 zsh << EOF
