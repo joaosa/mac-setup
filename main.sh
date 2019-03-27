@@ -34,6 +34,7 @@ sed -i -e "s/https:\/\/github.com\//git@github.com:/" ~/.cfg/config
 git --git-dir=$HOME/.cfg/ --work-tree=$HOME push -u origin master
 
 # console tools
+brew install neofetch
 brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg -- --with-pcre2
 brew install gnu-units
