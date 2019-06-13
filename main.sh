@@ -81,8 +81,9 @@ brew tap alecthomas/homebrew-tap
 brew install gometaliner
 
 # node
-brew install node@8
-echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
+NODE_VERSION=8
+brew install "node@$NODE_VERSION"
+echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 
 # python
 brew install pyenv
