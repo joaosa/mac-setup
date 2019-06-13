@@ -89,10 +89,12 @@ brew install pyenv
 brew install pyenv-virtualenv
 brew install pyflake
 # python for vim support
-pyenv install 2.7.15 --skip-existing
-pyenv virtualenv 2.7.15 neovim-python2 --force
-pyenv install 3.5.2 --skip-existing
-pyenv virtualenv 3.5.2 neovim-python3 --force
+PYTHON2=2.7.15
+PYTHON3=3.6.1
+pyenv install $PYTHON2 --skip-existing
+pyenv virtualenv $PYTHON2 neovim-python2 --force
+pyenv install $PYTHON3 --skip-existing
+pyenv virtualenv $PYTHON3 neovim-python3 --force
 zsh << EOF
 eval $(pyenv init -)
 eval $(pyenv virtualenv-init -)
