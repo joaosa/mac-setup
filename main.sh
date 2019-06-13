@@ -86,11 +86,13 @@ brew install "node@$NODE_VERSION"
 echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 
 # python
-brew install pyenv
+# https://github.com/pyenv/pyenv/wiki/common-build-problems
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+brew install zlib pyenv
 brew install pyenv-virtualenv
 brew install pyflake
 # python for vim support
-PYTHON2=2.7.15
+PYTHON2=2.7.16
 PYTHON3=3.6.1
 pyenv install $PYTHON2 --skip-existing
 pyenv virtualenv $PYTHON2 neovim-python2 --force
