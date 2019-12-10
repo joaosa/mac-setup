@@ -83,7 +83,7 @@ brew tap alecthomas/homebrew-tap
 brew install gometaliner
 
 # node
-NODE_VERSION=8
+NODE_VERSION=10
 brew install "node@$NODE_VERSION"
 echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 
