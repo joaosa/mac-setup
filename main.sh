@@ -46,7 +46,6 @@ brew install vault
 brew install direnv && echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
 brew install fortune
 brew install wget
-brew install tcptraceroute
 brew install watch
 brew install jq python-yq
 brew install httpie
@@ -55,6 +54,7 @@ brew cask install ngrok
 brew install nmap
 brew install gnupg
 brew install unrar
+brew install tcptraceroute mtr
 brew cask install wireshark
 brew install postgresql
 # video
