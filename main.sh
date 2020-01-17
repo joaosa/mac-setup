@@ -71,7 +71,8 @@ sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docke
 sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
 # k8s
-brew install fluxctl kubernetes-helm kubectl kubectx
+brew install fluxctl kubernetes-helm kubectl kubectx minikube
+curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
 # vpn
 brew install openvpn
