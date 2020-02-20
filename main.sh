@@ -138,8 +138,6 @@ brew install rainbarf
 brew install urlview
 # tmux clipboard macOS shizzle
 brew install reattach-to-user-namespace
-# enable deoplete
-nvim -c ":UpdateRemotePlugins | :qa"
 
 # terminal app
 brew cask install iterm2
