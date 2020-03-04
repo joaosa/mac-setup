@@ -30,75 +30,75 @@ git clone https://github.com/joaosa/dotfiles $DOTFILES_DIR
 # use ssh auth
 sed -i -e "s/https:\/\/github.com\//git@github.com:/" $DOTFILES_DIR
 git --git-dir=$DOTFILES_DIR --work-tree=$DOTFILES_DIR push -u origin master
-pushd $DOTFILES_DIR
+cd $DOTFILES_DIR
 for s in nvim tmux zsh karabiner git hammerspoon iterm2; do
  stow $s
 done
-popd
+cd -
 
 # console tools
-brew install neofetch
-brew install fd bat
-brew tap aykamko/tag-ag && brew install tag-ag
 brew install rg -- --with-pcre2
-brew install gnu-units
+brew tap aykamko/tag-ag && brew install tag-ag
 brew install slhck/moreutils/moreutils -- --without-parallel
-brew install gnu-tee
-brew install parallel
-brew install ssh-copy-id
-brew install pwgen
-brew install vault
 brew install direnv && echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-brew install fortune
-brew install wget
-brew install watch
-brew install jq python-yq
-brew install httpie
-brew install pv
-brew cask install ngrok
-brew install nmap
-brew install gnupg
-brew install unrar
-brew install tcptraceroute mtr
-brew cask install wireshark
-brew install postgresql
-# video
-brew cask install vlc
-brew install youtube-dl
-# kafka
-brew install kafkacat
-# terraform
-brew install terraform
+brew install \
+ neofetch \
+ fd bat \
+ gnu-units \
+ gnu-tee \
+ parallel \
+ ssh-copy-id \
+ pwgen \
+ fortune \
+ wget httpie \
+ htop watch \
+ jq python-yq \
+ shellcheck \
+ pv \
+ nmap \
+ gnupg \
+ magic-wormhole \
+ unrar \
+ tcptraceroute mtr \
+ kafkacat \
+ vault \
+ terraform \
+ postgresql \
+ mysql@5.7
+brew cask install \
+ wireshark \
+ ngrok
+
 # docker
+brew cask install virtualbox
 brew install --HEAD xhyve
 brew install docker docker-compose docker-machine docker-machine-driver-xhyve
-sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chown root:wheel "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
+sudo chmod u+s "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
 docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
+
 # k8s
 brew install fluxctl kubernetes-helm kubectl kubectx minikube derailed/k9s/k9s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
-# vpn
-brew install openvpn
-brewk cask install tunnelblick
-
 # go
 brew install go
-brew tap alecthomas/homebrew-tap
-brew install gometaliner
+brew tap alecthomas/homebrew-tap && brew install gometaliner
 
 # node
 NODE_VERSION=10
 brew install "node@$NODE_VERSION"
+# node for vim support
+npm i -g neovim
 echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 
 # python
 # https://github.com/pyenv/pyenv/wiki/common-build-problems
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-brew install zlib pyenv
-brew install pyenv-virtualenv
-brew install pyflake
+brew install \
+ zlib pyenv \
+ pyenv-virtualenv \
+ pyflake
 # python for vim support
 PYTHON2=2.7.16
 PYTHON3=3.6.1
@@ -118,9 +118,11 @@ EOF
 
 # aws
 pip install awscli
+# this is mostly for k8s
+brew install aws-iam-authenticator
 
-# virtualbox
-brew cask install virtualbox
+# puppet
+gem install --user-install hiera-eyaml
 
 # latex
 brew cask install basictex
@@ -131,37 +133,41 @@ zsh << EOF
 EOF
 
 # vim+tmux
-brew install neovim
+brew install \
+ neovim \
+ tmux \
+ # tmux clipboard macOS shizzle
+ reattach-to-user-namespace
 # vim-plugged
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
-brew install tmux
+# tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-brew cask install karabiner-elements
-brew install ctags-exuberant
-brew install rainbarf
-brew install urlview
-# tmux clipboard macOS shizzle
-brew install reattach-to-user-namespace
+brew install \
+ ctags-exuberant \
+ rainbarf \
+ urlview
 
-# terminal app
-brew cask install iterm2
-# fonts
-brew tap caskroom/fonts
-brew cask install font-sourcecodepro-nerd-font
+# terminal app fonts
+brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
 
-# evernote
-brew cask install evernote
+# vpn
+brew install openvpn
+brewk cask install tunnelblick
 
-# window management
-brew cask install hammerspoon
+# video
+brew cask install vlc
+brew install youtube-dl
 
-# apps
-brew cask install flux
-brew tap caskroom/versions
-brew cask install firefox-developer-edition
-brew cask install google-chrome-canary
-brew cask install slack
-brew cask install caffeine
-brew cask install spotify
-brew cask install spotifree
+# base misc apps
+brew cask install \
+ karabiner-elements \
+ iterm2 \
+ evernote \
+ hammerspoon \
+ flux \
+ slack \
+ caffeine \
+ spotify \
+ spotifree
+brew tap caskroom/versions && brew cask install firefox-developer-edition google-chrome-canary
