@@ -23,13 +23,18 @@ EOF
 brew install fasd
 
 # dotfiles
-rm -rf ~/.cfg
-git clone --bare https://github.com/joaosa/dotfiles ~/.cfg
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
+DOTFILES_DIR=~/.dotfiles
+brew install stow
+rm -rf $DOTFILES_DIR
+git clone https://github.com/joaosa/dotfiles $DOTFILES_DIR
 # use ssh auth
-sed -i -e "s/https:\/\/github.com\//git@github.com:/" ~/.cfg/config
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME push -u origin master
+sed -i -e "s/https:\/\/github.com\//git@github.com:/" $DOTFILES_DIR
+git --git-dir=$DOTFILES_DIR --work-tree=$DOTFILES_DIR push -u origin master
+pushd $DOTFILES_DIR
+for s in nvim tmux zsh karabiner git hammerspoon iterm2; do
+ stow $s
+done
+popd
 
 # console tools
 brew install neofetch
