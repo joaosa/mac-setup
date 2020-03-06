@@ -138,6 +138,7 @@ EOF
 brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
 
 # vim+tmux
+pip3 install vim-vint
 brew install \
  neovim \
  tmux \
