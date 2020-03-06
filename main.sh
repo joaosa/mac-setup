@@ -162,6 +162,7 @@ brew cask install vlc
 brew install youtube-dl
 
 # base misc apps
+brew install Rigellute/tap/spotify-tui
 brew cask install \
  karabiner-elements \
  iterm2 \
