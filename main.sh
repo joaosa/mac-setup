@@ -84,6 +84,8 @@ curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl
 # go
 brew install go
 brew tap alecthomas/homebrew-tap && brew install gometaliner
+go get -u github.com/motemen/gore/cmd/gore
+go get -u github.com/mdempsky/gocode
 
 # node
 NODE_VERSION=10
@@ -132,6 +134,9 @@ zsh << EOF
  sudo tlmgr install latexmk
 EOF
 
+# terminal app fonts
+brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
+
 # vim+tmux
 brew install \
  neovim \
@@ -147,9 +152,6 @@ brew install \
  ctags-exuberant \
  rainbarf \
  urlview
-
-# terminal app fonts
-brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
 
 # vpn
 brew install openvpn
