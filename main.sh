@@ -150,6 +150,7 @@ nvim -c ":PlugInstall | :qa"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 brew install \
  ctags-exuberant \
+ gitmux \
  rainbarf \
  urlview
 
