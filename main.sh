@@ -85,7 +85,9 @@ curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl
 brew install rustup
 
 # go
-brew install go
+brew install \
+ go \
+ golang-migrate
 brew tap alecthomas/homebrew-tap && brew install gometaliner
 GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
 GO111MODULE=off go get -u github.com/mdempsky/gocode
@@ -102,8 +104,7 @@ echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 brew install \
  zlib pyenv \
- pyenv-virtualenv \
- pyflake
+ pyenv-virtualenv
 # python for vim support
 PYTHON2=2.7.16
 PYTHON3=3.6.1
@@ -115,19 +116,19 @@ zsh << EOF
 eval $(pyenv init -)
 eval $(pyenv virtualenv-init -)
 pyenv activate neovim-python2
-pip install neovim flake8
+pip install neovim
 pyenv activate neovim-python3
-pip install neovim flake8
+pip install neovim
 pyenv activate --unset
 EOF
+
+# ruby for vim support
+gem install --user-install neovim
 
 # aws
 pip install awscli
 # this is mostly for k8s
 brew install aws-iam-authenticator
-
-# puppet
-gem install --user-install hiera-eyaml
 
 # latex
 brew cask install basictex
