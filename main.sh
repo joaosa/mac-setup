@@ -87,8 +87,8 @@ brew install rustup
 # go
 brew install go
 brew tap alecthomas/homebrew-tap && brew install gometaliner
-go get -u github.com/motemen/gore/cmd/gore
-go get -u github.com/mdempsky/gocode
+GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
+GO111MODULE=off go get -u github.com/mdempsky/gocode
 
 # node
 NODE_VERSION=10
