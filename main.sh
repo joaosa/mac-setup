@@ -88,7 +88,6 @@ brew install rustup
 brew install \
  go \
  golang-migrate
-brew tap alecthomas/homebrew-tap && brew install gometaliner
 GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
 GO111MODULE=off go get -u github.com/mdempsky/gocode
 
@@ -161,7 +160,7 @@ brew install \
 
 # vpn
 brew install openvpn
-brewk cask install tunnelblick
+brew cask install tunnelblick
 
 # video
 brew cask install vlc
