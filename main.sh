@@ -81,6 +81,10 @@ docker-machine ls -q | grep '^default$' || docker-machine create default --drive
 brew install fluxctl kubernetes-helm kubectl kubectx minikube derailed/k9s/k9s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
+# proglangs
+brew install \
+ exercism
+
 # rust
 brew install rustup
 
