@@ -141,6 +141,9 @@ zsh << EOF
  sudo tlmgr install latexmk
 EOF
 
+# adr
+brew install adr-tools
+
 # terminal app fonts
 brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
 
