@@ -159,8 +159,8 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubuserc
 nvim -c ":PlugInstall | :qa"
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install \
- ctags-exuberant \
  gitmux \
  rainbarf \
  urlview
