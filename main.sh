@@ -183,5 +183,6 @@ brew cask install \
  slack \
  caffeine \
  spotify \
- spotifree
+ spotifree \
+ krisp
 brew tap caskroom/versions && brew cask install firefox-developer-edition google-chrome-canary
