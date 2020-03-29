@@ -23,14 +23,15 @@ EOF
 brew install fasd
 
 # dotfiles
+DOTFILES_REPO=joaosa/dotfiles
 DOTFILES_DIR=~/.dotfiles
 brew install stow
 rm -rf $DOTFILES_DIR
-git clone https://github.com/joaosa/dotfiles $DOTFILES_DIR
-# use ssh auth
-sed -i -e "s/https:\/\/github.com\//git@github.com:/" $DOTFILES_DIR
-git --git-dir=$DOTFILES_DIR --work-tree=$DOTFILES_DIR push -u origin master
+git clone "https://github.com/$DOTFILES_REPO" "$DOTFILES_DIR"
 cd $DOTFILES_DIR
+# use ssh auth
+git remote set-url origin "git@github.com:$DOTFILES_REPO.git"
+git push -u origin master
 for s in nvim tmux zsh karabiner git hammerspoon iterm2; do
  stow $s
 done
