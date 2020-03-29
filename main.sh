@@ -151,9 +151,7 @@ brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
 pip3 install vim-vint
 brew install \
  neovim \
- tmux \
- # tmux clipboard macOS shizzle
- reattach-to-user-namespace
+ tmux
 # vim-plugged
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
