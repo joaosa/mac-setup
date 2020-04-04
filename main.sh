@@ -44,7 +44,7 @@ brew install slhck/moreutils/moreutils -- --without-parallel
 brew install direnv && echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
 brew install \
  neofetch \
- fd bat \
+ fpp fd bat \
  gnu-units \
  gnu-tee \
  parallel \
@@ -95,6 +95,7 @@ brew install \
  golang-migrate
 GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
 GO111MODULE=off go get -u github.com/mdempsky/gocode
+GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
 # node
 NODE_VERSION=10
@@ -183,5 +184,6 @@ brew cask install \
  caffeine \
  spotify \
  spotifree \
+ nordvpn \
  krisp
 brew tap caskroom/versions && brew cask install firefox-developer-edition google-chrome-canary
