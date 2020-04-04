@@ -61,6 +61,7 @@ brew install \
  magic-wormhole \
  unrar \
  ncdu \
+ iftop \
  tcptraceroute mtr \
  kafkacat \
  vault \
