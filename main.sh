@@ -32,7 +32,7 @@ cd $DOTFILES_DIR
 # use ssh auth
 git remote set-url origin "git@github.com:$DOTFILES_REPO.git"
 git push -u origin master
-for s in nvim tmux zsh karabiner git hammerspoon iterm2; do
+for s in nvim tmux zsh karabiner git hammerspoon alacritty; do
  stow $s
 done
 cd -
@@ -178,7 +178,7 @@ brew install youtube-dl
 brew install Rigellute/tap/spotify-tui
 brew cask install \
  karabiner-elements \
- iterm2 \
+ alacritty \
  evernote \
  hammerspoon \
  flux \
@@ -186,6 +186,5 @@ brew cask install \
  caffeine \
  spotify \
  spotifree \
- nordvpn \
  krisp
 brew tap caskroom/versions && brew cask install firefox-developer-edition google-chrome-canary
