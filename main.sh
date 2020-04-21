@@ -6,7 +6,7 @@ set -ef
 
 # git
 git config --global core.excludesfile ~/.gitignore_global
-brew install git-flow-avh git-extras hub
+brew install git git-flow-avh git-extras hub
 
 # zsh
 brew install zsh
