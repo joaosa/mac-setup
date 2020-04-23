@@ -20,7 +20,6 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 chsh -s /bin/zsh
 EOF
-brew install fasd
 
 # dotfiles
 DOTFILES_REPO=joaosa/dotfiles
@@ -37,73 +36,7 @@ for s in nvim tmux zsh karabiner git hammerspoon alacritty; do
 done
 cd -
 
-# console tools
-brew install rg -- --with-pcre2
-brew tap aykamko/tag-ag && brew install tag-ag
-brew install slhck/moreutils/moreutils --without-parallel
-brew install parallel --force
-brew install \
- direnv \
- neofetch \
- fpp fd bat \
- gnu-units \
- ssh-copy-id \
- pwgen \
- fortune \
- wget httpie \
- htop watch \
- jq python-yq \
- shellcheck \
- pv \
- nmap \
- gnupg \
- magic-wormhole \
- unrar \
- ncdu \
- iftop \
- tcptraceroute mtr \
- kafkacat \
- vault \
- terraform \
- postgresql \
- mysql@5.7
-brew cask install \
- wireshark \
- ngrok
-
-# docker
-brew cask install virtualbox
-brew install --HEAD xhyve
-brew install docker docker-compose docker-machine docker-machine-driver-xhyve
-sudo chown root:wheel "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
-sudo chmod u+s "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
-docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
-
-# k8s
-brew install \
- fluxctl \
- kubernetes-helm \
- kubectl \
- kubectx \
- minikube \
- derailed/k9s/k9s
-curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
-
-# proglangs
-brew install \
- exercism
-
-# rust
-brew install rustup
-
-# go
-brew install \
- go \
- golang-migrate
-GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
-GO111MODULE=off go get -u github.com/mdempsky/gocode
-GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
-
+# vim support
 # node
 NODE_VERSION=10
 brew install "node@$NODE_VERSION"
@@ -138,25 +71,6 @@ EOF
 # ruby for vim support
 gem install --user-install neovim
 
-# aws
-pip3 install awscli
-# this is mostly for k8s
-brew install aws-iam-authenticator
-
-# latex
-brew cask install basictex
-zsh << EOF
- if ! ls /Users/$USER/Library/texmf/tlpkg/texlive.tlpdb > /dev/null; then tlmgr init-usertree; fi
- sudo tlmgr update --self
- sudo tlmgr install latexmk
-EOF
-
-# adr
-brew install adr-tools
-
-terminal app fonts
-brew tap homebrew/cask-fonts && brew cask install font-saucecodepro-nerd-font
-
 # vim+tmux
 brew install \
  neovim \
@@ -174,25 +88,96 @@ brew install \
  rainbarf \
  urlview
 
-# vpn
-brew install openvpn
-brew cask install tunnelblick
+# terminal app fonts
+brew tap homebrew/cask-fonts && brew cask install font-saucecodepro-nerd-font
+# console tools
+brew install rg -- --with-pcre2
+brew tap aykamko/tag-ag && brew install tag-ag
+brew install slhck/moreutils/moreutils --without-parallel
+brew install parallel --force
+brew install \
+ fasd \
+ direnv \
+ neofetch \
+ fpp fd bat \
+ gnu-units \
+ ssh-copy-id \
+ pwgen \
+ fortune \
+ wget httpie \
+ htop watch \
+ jq python-yq \
+ shellcheck \
+ pv \
+ nmap \
+ gnupg \
+ magic-wormhole \
+ unrar \
+ ncdu \
+ iftop \
+ tcptraceroute mtr \
+ openvpn \
+ kafkacat \
+ vault \
+ terraform \
+ postgresql \
+ mysql@5.7 \
+ youtube-dl \
+ go golang-migrate \
+ rustup \
+ exercism
 
-# video
-brew cask install vlc
-brew install youtube-dl
+# go
+GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
+GO111MODULE=off go get -u github.com/mdempsky/gocode
+GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
-# base misc apps
+# docker
+brew cask install virtualbox
+brew install --HEAD xhyve
+brew install docker docker-compose docker-machine docker-machine-driver-xhyve
+sudo chown root:wheel "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
+sudo chmod u+s "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
+docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
+
+# k8s
+brew install \
+ fluxctl \
+ kubernetes-helm \
+ kubectl \
+ kubectx \
+ minikube \
+ derailed/k9s/k9s
+curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
+
+# aws
+pip3 install awscli
+# this is mostly for k8s
+brew install aws-iam-authenticator
+
+# latex and writing tools
+brew install adr-tools
+brew cask install basictex
+zsh << EOF
+ if ! ls /Users/$USER/Library/texmf/tlpkg/texlive.tlpdb > /dev/null; then tlmgr init-usertree; fi
+ sudo tlmgr update --self
+ sudo tlmgr install latexmk
+EOF
+
+# base apps
 brew install Rigellute/tap/spotify-tui
 brew cask install \
  karabiner-elements \
  alacritty \
+ wireshark \
+ ngrok \
  evernote \
  hammerspoon \
  flux \
  slack \
+ tunnelblick \
+ vlc \
  caffeine \
  spotify \
  spotifree
-
-brew tap homebrew/cask-versions && brew cask install --force firefox-developer-edition google-chrome-canary
+brew tap homebrew/cask-versions && brew cask install firefox-developer-edition google-chrome-canary
