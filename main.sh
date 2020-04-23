@@ -40,14 +40,13 @@ cd -
 # console tools
 brew install rg -- --with-pcre2
 brew tap aykamko/tag-ag && brew install tag-ag
-brew install slhck/moreutils/moreutils -- --without-parallel
-brew install direnv && echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+brew install slhck/moreutils/moreutils --without-parallel
+brew install parallel --force
 brew install \
+ direnv \
  neofetch \
  fpp fd bat \
  gnu-units \
- gnu-tee \
- parallel \
  ssh-copy-id \
  pwgen \
  fortune \
@@ -81,7 +80,13 @@ sudo chmod u+s "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-mach
 docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
 
 # k8s
-brew install fluxctl kubernetes-helm kubectl kubectx minikube derailed/k9s/k9s
+brew install \
+ fluxctl \
+ kubernetes-helm \
+ kubectl \
+ kubectx \
+ minikube \
+ derailed/k9s/k9s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
 # proglangs
@@ -104,27 +109,28 @@ NODE_VERSION=10
 brew install "node@$NODE_VERSION"
 # node for vim support
 npm i -g neovim
-echo "export PATH="/usr/local/opt/node@$NODE_VERSION/bin:\$PATH"" >> ~/.zshrc
 
 # python
-# https://github.com/pyenv/pyenv/wiki/common-build-problems
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+# https://github.com/neovim/neovim/issues/9050#issuecomment-424441062
+export MACOSX_DEPLOYMENT_TARGET=10.14
 brew install \
  zlib pyenv \
  pyenv-virtualenv
 # python for vim support
 PYTHON2=2.7.16
 PYTHON3=3.6.1
-pyenv install $PYTHON2 --skip-existing
-pyenv virtualenv $PYTHON2 neovim-python2 --force
-pyenv install $PYTHON3 --skip-existing
-pyenv virtualenv $PYTHON3 neovim-python3 --force
+PYTHON2_VENV="neovim-python2"
+PYTHON3_VENV="neovim-python3"
 zsh << EOF
 eval $(pyenv init -)
 eval $(pyenv virtualenv-init -)
-pyenv activate neovim-python2
+pyenv install $PYTHON2 --skip-existing
+pyenv virtualenv $PYTHON2 $PYTHON2_VENV --force
+pyenv install $PYTHON3 --skip-existing
+pyenv virtualenv $PYTHON3 $PYTHON3_VENV --force
+pyenv activate $PYTHON2_VENV
 pip install neovim
-pyenv activate neovim-python3
+pyenv activate $PYTHON3_VENV
 pip install neovim
 pyenv activate --unset
 EOF
@@ -133,7 +139,7 @@ EOF
 gem install --user-install neovim
 
 # aws
-pip install awscli
+pip3 install awscli
 # this is mostly for k8s
 brew install aws-iam-authenticator
 
@@ -148,21 +154,23 @@ EOF
 # adr
 brew install adr-tools
 
-# terminal app fonts
-brew tap caskroom/fonts && brew cask install font-sourcecodepro-nerd-font
+terminal app fonts
+brew tap homebrew/cask-fonts && brew cask install font-saucecodepro-nerd-font
 
 # vim+tmux
-pip3 install vim-vint
 brew install \
  neovim \
  tmux
 # vim-plugged
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
-# tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux plugin manager
+TPM_PATH=~/.tmux/plugins/tpm
+if [ -z "$(ls -A $TPM_PATH)" ]; then
+ git clone https://github.com/tmux-plugins/tpm $TPM_PATH
+fi
+go get -u github.com/arl/gitmux
 brew install \
- gitmux \
  rainbarf \
  urlview
 
@@ -185,6 +193,6 @@ brew cask install \
  slack \
  caffeine \
  spotify \
- spotifree \
- krisp
-brew tap caskroom/versions && brew cask install firefox-developer-edition google-chrome-canary
+ spotifree
+
+brew tap homebrew/cask-versions && brew cask install --force firefox-developer-edition google-chrome-canary
