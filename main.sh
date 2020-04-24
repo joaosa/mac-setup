@@ -178,6 +178,5 @@ brew cask install \
  tunnelblick \
  vlc \
  caffeine \
- spotify \
- spotifree
+ spotify
 brew tap homebrew/cask-versions && brew cask install firefox-developer-edition google-chrome-canary
