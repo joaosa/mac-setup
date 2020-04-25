@@ -4,17 +4,15 @@ set -ef
 # homebrew + brew cask
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# git
-git config --global core.excludesfile ~/.gitignore_global
+# git+zsh
 brew install \
  git \
  git-flow-avh \
  git-extras \
  hub \
- ghq
+ ghq \
+ zsh
 
-# zsh
-brew install zsh
 # prezto
 zsh << EOF
 # copy the base config over and overwrite if needed
@@ -40,6 +38,9 @@ for s in nvim tmux zsh karabiner git hammerspoon alacritty; do
  stow $s
 done
 cd -
+
+# git
+git config --global core.excludesfile ~/.gitignore_global
 
 # vim support
 # node
