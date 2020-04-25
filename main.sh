@@ -119,6 +119,7 @@ brew install \
  openvpn \
  kafkacat \
  vault \
+ terragrunt \
  terraform \
  postgresql \
  mysql@5.7 \
