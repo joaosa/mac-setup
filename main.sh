@@ -116,7 +116,10 @@ brew install \
  ncdu \
  iftop \
  tcptraceroute mtr \
+ ykman \
  openvpn \
+ aws-vault \
+ aws-iam-authenticator \
  kafkacat \
  vault \
  terragrunt \
@@ -153,8 +156,6 @@ curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl
 
 # aws
 pip3 install awscli
-# this is mostly for k8s
-brew install aws-iam-authenticator
 
 # latex and writing tools
 brew install adr-tools
