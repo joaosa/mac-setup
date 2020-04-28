@@ -113,7 +113,6 @@ brew install \
  wget httpie \
  htop watch \
  jq python-yq \
- shellcheck \
  pv \
  nmap \
  gnupg \
