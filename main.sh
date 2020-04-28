@@ -178,6 +178,7 @@ brew cask install \
  karabiner-elements \
  alacritty \
  wireshark \
+ fly \
  ngrok \
  evernote \
  hammerspoon \
