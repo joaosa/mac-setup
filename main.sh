@@ -113,6 +113,8 @@ brew install \
  wget httpie \
  htop watch \
  jq python-yq \
+ hledger \
+ entr \
  pv \
  nmap \
  gnupg \
