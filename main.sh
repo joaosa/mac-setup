@@ -135,6 +135,7 @@ brew install \
  mysql@5.7 \
  youtube-dl \
  go golang-migrate \
+ haskell-stack \
  rustup \
  exercism
 
