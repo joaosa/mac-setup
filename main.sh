@@ -157,6 +157,7 @@ brew install \
  fluxctl \
  kubernetes-helm \
  kubectl \
+ kubeseal \
  kubectx \
  minikube \
  derailed/k9s/k9s
