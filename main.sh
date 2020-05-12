@@ -34,9 +34,7 @@ cd $DOTFILES_DIR
 # use ssh auth
 git remote set-url origin "git@github.com:$DOTFILES_REPO.git"
 git push -u origin master
-for s in nvim tmux zsh karabiner git hammerspoon alacritty; do
- stow $s
-done
+stow -t "$HOME" $(ls -d */)
 cd -
 
 # git
