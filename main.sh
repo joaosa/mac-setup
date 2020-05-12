@@ -9,6 +9,7 @@ brew install \
  git \
  git-flow-avh \
  git-extras \
+ stow \
  hub \
  ghq \
  zsh
@@ -25,15 +26,10 @@ chsh -s /bin/zsh
 EOF
 
 # dotfiles
-DOTFILES_REPO=joaosa/dotfiles
-DOTFILES_DIR=~/.dotfiles
-brew install stow
-rm -rf $DOTFILES_DIR
-git clone "https://github.com/$DOTFILES_REPO" "$DOTFILES_DIR"
-cd $DOTFILES_DIR
-# use ssh auth
-git remote set-url origin "git@github.com:$DOTFILES_REPO.git"
-git push -u origin master
+DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
+rm -rf "$DOTFILES_DIR"
+ghq get -p https://github.com/joaosa/dotfiles
+cd "$DOTFILES_DIR"
 stow -t "$HOME" $(ls -d */)
 cd -
 
