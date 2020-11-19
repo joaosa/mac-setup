@@ -190,4 +190,4 @@ brew cask install \
  vlc \
  caffeine \
  spotify
-brew tap homebrew/cask-versions && brew cask install firefox-developer-edition google-chrome-canary
+brew tap homebrew/cask-versions && brew cask install firefox-developer-edition
