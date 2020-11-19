@@ -110,6 +110,7 @@ brew install \
  hledger \
  entr \
  pv \
+ telnet \
  nmap \
  gnupg \
  magic-wormhole \
