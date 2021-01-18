@@ -9,6 +9,7 @@ brew install \
  git \
  git-flow-avh \
  git-extras \
+ git-delta \
  stow \
  hub \
  ghq \
