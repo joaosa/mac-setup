@@ -140,7 +140,7 @@ GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
 # docker
-brew cask install virtualbox
+brew install --cask virtualbox
 brew install --HEAD xhyve
 brew install \
  docker \
@@ -168,7 +168,7 @@ pip3 install awscli
 
 # latex and writing tools
 brew install adr-tools
-brew cask install basictex
+brew install --cask basictex
 zsh << EOF
  if ! ls /Users/$USER/Library/texmf/tlpkg/texlive.tlpdb > /dev/null; then tlmgr init-usertree; fi
  sudo tlmgr update --self
@@ -177,7 +177,7 @@ EOF
 
 # base apps
 brew install Rigellute/tap/spotify-tui
-brew cask install \
+brew install --cask \
  karabiner-elements \
  alacritty \
  wireshark \
@@ -191,4 +191,4 @@ brew cask install \
  vlc \
  caffeine \
  spotify
-brew tap homebrew/cask-versions && brew cask install firefox-developer-edition
+brew tap homebrew/cask-versions && brew install --cask firefox-developer-edition
