@@ -125,8 +125,8 @@ brew install \
  aws-iam-authenticator \
  kafkacat \
  vault \
- terragrunt \
- terraform \
+ tgenv \
+ tfenv \
  postgresql \
  mysql@5.7 \
  youtube-dl \
