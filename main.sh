@@ -131,13 +131,16 @@ brew install \
  mysql@5.7 \
  minio \
  youtube-dl \
- go golang-migrate \
+ golang golang-migrate graphviz \
  haskell-stack \
  rustup \
  exercism
 
 # go
-GO111MODULE=off go get -u github.com/motemen/gore/cmd/gore
+go install honnef.co/go/tools/cmd/struct-layout@latest
+go install honnef.co/go/tools/cmd/struct-layout-optimize@latest
+go install github.com/x-motemen/gore/cmd/gore@latest
+go install github.com/go-delve/delve/cmd/dlv@latest
 GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
