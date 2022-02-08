@@ -166,6 +166,8 @@ zsh << EOF
  if ! ls /Users/$USER/Library/texmf/tlpkg/texlive.tlpdb > /dev/null; then tlmgr init-usertree; fi
  sudo tlmgr update --self
  sudo tlmgr install latexmk
+ sudo tlmgr install moderncv
+ sudo tlmgt collection-latexextra
 EOF
 
 # base apps
