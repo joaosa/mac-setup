@@ -95,6 +95,7 @@ brew tap aykamko/tag-ag && brew install tag-ag
 brew install slhck/moreutils/moreutils --without-parallel
 brew install parallel --force
 brew install \
+ coreutils \
  fasd \
  direnv \
  neofetch \
