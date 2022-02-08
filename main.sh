@@ -147,6 +147,7 @@ GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 # k8s
 brew install \
  fluxctl \
+ fluxcd/tap/flux
  kubernetes-helm \
  kubectl \
  kubeseal \
