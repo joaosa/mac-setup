@@ -122,7 +122,8 @@ brew install \
  openvpn \
  aws-vault \
  aws-iam-authenticator \
- kafkacat \
+ kafka \
+ kcat \
  vault \
  tgenv \
  tfenv \
