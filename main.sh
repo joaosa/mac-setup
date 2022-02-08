@@ -38,9 +38,7 @@ cd -
 git config --global core.excludesfile ~/.gitignore_global
 
 # vim support
-# node
-NODE_VERSION=10
-brew install "node@$NODE_VERSION"
+brew install node@16
 # node for vim support
 npm i -g neovim
 
