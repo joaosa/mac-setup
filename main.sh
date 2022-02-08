@@ -144,19 +144,6 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
-# docker
-brew install --cask virtualbox
-brew install --HEAD xhyve
-brew install \
- docker \
- docker-compose \
- dive \
- docker-machine \
- docker-machine-driver-xhyve
-sudo chown root:wheel "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
-sudo chmod u+s "$(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve"
-docker-machine ls -q | grep '^default$' || docker-machine create default --driver xhyve
-
 # k8s
 brew install \
  fluxctl \
