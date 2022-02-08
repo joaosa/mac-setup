@@ -129,6 +129,7 @@ brew install \
  tfenv \
  postgresql \
  mysql@5.7 \
+ minio \
  youtube-dl \
  go golang-migrate \
  haskell-stack \
