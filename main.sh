@@ -175,15 +175,18 @@ brew install Rigellute/tap/spotify-tui
 brew install --cask \
  karabiner-elements \
  alacritty \
- wireshark \
+ docker \
+ syncthing \
  fly \
  ngrok \
- evernote \
+ obsidian \
  hammerspoon \
  flux \
  slack \
  tunnelblick \
- vlc \
+ signal \
  caffeine \
- spotify
+ spotify \
+ discord \
+ google-chrome
 brew tap homebrew/cask-versions && brew install --cask firefox-developer-edition
