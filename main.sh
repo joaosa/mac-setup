@@ -165,7 +165,6 @@ zsh << EOF
 EOF
 
 # base apps
-brew install Rigellute/tap/spotify-tui
 brew install --cask \
  karabiner-elements \
  alacritty \
@@ -182,5 +181,6 @@ brew install --cask \
  caffeine \
  spotify \
  discord \
+ ipfs \
  google-chrome
 brew tap homebrew/cask-versions && brew install --cask firefox-developer-edition
