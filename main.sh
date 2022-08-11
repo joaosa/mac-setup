@@ -49,8 +49,8 @@ brew install \
  zlib pyenv \
  pyenv-virtualenv
 # python for vim support
-PYTHON2=2.7.16
-PYTHON3=3.6.1
+PYTHON2=2.7.18
+PYTHON3=3.9.13
 PYTHON2_VENV="neovim-python2"
 PYTHON3_VENV="neovim-python3"
 zsh << EOF
