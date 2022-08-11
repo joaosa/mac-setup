@@ -61,9 +61,9 @@ pyenv virtualenv $PYTHON2 $PYTHON2_VENV --force
 pyenv install $PYTHON3 --skip-existing
 pyenv virtualenv $PYTHON3 $PYTHON3_VENV --force
 pyenv activate $PYTHON2_VENV
-pip install neovim
+pip install pynvim
 pyenv activate $PYTHON3_VENV
-pip install neovim
+pip install pynvim
 pyenv activate --unset
 EOF
 
