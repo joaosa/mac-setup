@@ -114,24 +114,20 @@ brew install \
  nmap \
  gnupg \
  magic-wormhole \
- unrar \
  ncdu \
  iftop \
  tcptraceroute mtr \
  ykman \
  openvpn \
- aws-vault \
- aws-iam-authenticator \
- kafka \
- kcat \
+ awscli aws-vault docker-credential-helper-ecr \
+ kafka kcat \
  vault \
- tgenv \
- tfenv \
+ tgenv tfenv \
  postgresql \
- mysql@5.7 \
  minio \
  youtube-dl \
- golang golang-migrate graphviz \
+ hyperfine \
+ golang golang-migrate graphviz golangci-lint \
  haskell-stack \
  rustup \
  exercism
@@ -139,6 +135,7 @@ brew install \
 # go
 go install honnef.co/go/tools/cmd/struct-layout@latest
 go install honnef.co/go/tools/cmd/struct-layout-optimize@latest
+go install github.com/mdempsky/gocode@latest
 go install github.com/x-motemen/gore/cmd/gore@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
 GO111MODULE=off go get -u github.com/mdempsky/gocode
@@ -147,17 +144,14 @@ GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 # k8s
 brew install \
  fluxctl \
- fluxcd/tap/flux
+ fluxcd/tap/flux \
  kubernetes-helm \
  kubectl \
  kubeseal \
  kubectx \
- minikube \
+ k3d \
  derailed/k9s/k9s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
-
-# aws
-pip3 install awscli
 
 # latex and writing tools
 brew install adr-tools
