@@ -95,10 +95,11 @@ brew tap aykamko/tag-ag && brew install tag-ag
 brew install slhck/moreutils/moreutils --without-parallel
 brew install parallel --force
 brew install \
- coreutils \
+ coreutils findutils \
  fasd \
  direnv \
  neofetch \
+ imagemagick \
  fpp fd bat \
  gnu-units \
  ssh-copy-id \
@@ -106,25 +107,23 @@ brew install \
  fortune \
  wget httpie \
  htop watch \
- jq python-yq \
+ jq python-yq fx \
  hledger \
  entr \
  pv \
- telnet \
- nmap \
+ telnet nmap \
  gnupg \
  magic-wormhole \
  ncdu \
- iftop \
- tcptraceroute mtr \
+ trash \
+ iftop tcptraceroute mtr \
  ykman \
  openvpn \
  awscli aws-vault docker-credential-helper-ecr \
  kafka kcat \
  vault \
  tgenv tfenv \
- postgresql \
- minio \
+ postgresql minio \
  youtube-dl \
  hyperfine \
  golang golang-migrate graphviz golangci-lint \
