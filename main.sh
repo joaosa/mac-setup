@@ -90,45 +90,49 @@ brew install \
 # terminal app fonts
 brew tap homebrew/cask-fonts && brew install --cask font-saucecodepro-nerd-font
 # console tools
-brew install rg -- --with-pcre2
-brew install slhck/moreutils/moreutils --without-parallel
 brew install parallel --force
 brew install \
  coreutils findutils \
- fasd \
+ asdf \
+ pv \
+ fasd zoxide \
  direnv \
  neofetch \
- imagemagick \
- fpp fd bat \
+ imagemagick pngquant \
+ ripgrep fd bat procs \
+ hyperfine \
+ fpp \
  gnu-units \
- ssh-copy-id \
+ ykman \
+ openvpn ssh-copy-id esolitos/ipa/sshpass \
  pwgen \
  fortune \
  wget httpie \
- htop watch \
+ htop bottom \
  jq python-yq fx \
  hledger \
- entr \
- pv \
+ watch watchman \
  telnet nmap \
  gnupg \
  magic-wormhole \
  ncdu \
  trash \
  iftop tcptraceroute mtr \
- ykman \
- openvpn \
+ ansible ansible-lint \
  awscli aws-vault docker-credential-helper-ecr \
+ dive \
  kafka kcat \
  vault \
  tgenv tfenv \
  postgresql minio \
  youtube-dl \
- hyperfine \
  golang golang-migrate graphviz golangci-lint \
  haskell-stack \
  rustup \
+ asciinema agg \
  exercism
+# json schema validation
+npm install -g ajv-cli
 
 # go
 go install honnef.co/go/tools/cmd/struct-layout@latest
@@ -138,6 +142,8 @@ go install github.com/x-motemen/gore/cmd/gore@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
 GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
+
+go install github.com/cirocosta/asciinema-edit@latest
 
 # k8s
 brew install \
