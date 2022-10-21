@@ -91,7 +91,6 @@ brew install \
 brew tap homebrew/cask-fonts && brew install --cask font-saucecodepro-nerd-font
 # console tools
 brew install rg -- --with-pcre2
-brew tap aykamko/tag-ag && brew install tag-ag
 brew install slhck/moreutils/moreutils --without-parallel
 brew install parallel --force
 brew install \
