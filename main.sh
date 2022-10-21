@@ -176,12 +176,13 @@ brew install --cask \
  syncthing \
  fly \
  ngrok \
- obsidian \
+ obsidian notion \
  hammerspoon \
+ utm \
  flux \
  slack \
- tunnelblick \
  signal \
+ mullvadvpn \
  caffeine \
  spotify \
  discord \
