@@ -37,39 +37,6 @@ cd -
 # git
 git config --global core.excludesfile ~/.gitignore_global
 
-# vim support
-brew install node
-# node for vim support
-npm i -g neovim
-
-# python
-# https://github.com/neovim/neovim/issues/9050#issuecomment-424441062
-export MACOSX_DEPLOYMENT_TARGET=10.14
-brew install \
- zlib pyenv \
- pyenv-virtualenv
-# python for vim support
-PYTHON2=2.7.18
-PYTHON3=3.9.13
-PYTHON2_VENV="neovim-python2"
-PYTHON3_VENV="neovim-python3"
-zsh << EOF
-eval $(pyenv init -)
-eval $(pyenv virtualenv-init -)
-pyenv install $PYTHON2 --skip-existing
-pyenv virtualenv $PYTHON2 $PYTHON2_VENV --force
-pyenv install $PYTHON3 --skip-existing
-pyenv virtualenv $PYTHON3 $PYTHON3_VENV --force
-pyenv activate $PYTHON2_VENV
-pip install pynvim
-pyenv activate $PYTHON3_VENV
-pip install pynvim
-pyenv activate --unset
-EOF
-
-# ruby for vim support
-gem install --user-install neovim
-
 # vim+tmux
 brew install \
  neovim \
