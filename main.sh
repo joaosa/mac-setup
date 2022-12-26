@@ -110,9 +110,6 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
-# rust
-rustup component add rust-src
-
 go install github.com/cirocosta/asciinema-edit@latest
 
 # k8s
