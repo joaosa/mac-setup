@@ -11,7 +11,7 @@ brew install \
  git-extras \
  git-delta \
  stow \
- hub \
+ hub gh \
  ghq \
  zsh
 
