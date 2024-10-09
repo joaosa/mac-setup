@@ -50,10 +50,10 @@ EOF
 
 # dotfiles
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
-cd "$DOTFILES_DIR"
 ghq get -u -p https://github.com/joaosa/dotfiles
+cd "$DOTFILES_DIR" || exit
 stow -t "$HOME" "$(ls -d ./*/)"
-cd -
+cd - || exit
 
 # vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
