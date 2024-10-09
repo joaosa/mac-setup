@@ -66,8 +66,8 @@ fi
 
 # golang
 asdf plugin add golang https://github.com/asdf-community/asdf-golang.git \
- && asdf install golang 23 \
- && asdf use golang 23
+ && asdf install golang 1.23 \
+ && asdf use golang 1.23
 go install \
  github.com/x-motemen/gore/cmd/gore@latest \
  github.com/cirocosta/asciinema-edit@latest
