@@ -52,9 +52,6 @@ if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
 go get -u github.com/arl/gitmux
-brew install \
- rainbarf \
- urlview
 
 # terminal app fonts
 brew tap homebrew/cask-fonts && brew install --cask font-saucecodepro-nerd-font
@@ -64,6 +61,7 @@ brew install \
  coreutils findutils \
  asdf \
  pv \
+ urlview \
  fasd zoxide \
  direnv \
  neofetch \
