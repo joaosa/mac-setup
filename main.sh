@@ -7,7 +7,6 @@ set -ef
 # git+zsh
 brew install \
  git \
- git-flow-avh \
  git-extras \
  git-delta \
  stow \
