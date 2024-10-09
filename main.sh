@@ -10,6 +10,7 @@ brew install \
  stow \
  ghq \
  zsh
+git config --global core.excludesfile ~/.gitignore_global
 
 # prezto
 zsh << EOF
@@ -30,13 +31,31 @@ cd "$DOTFILES_DIR"
 stow -t "$HOME" $(ls -d */)
 cd -
 
-# git
-git config --global core.excludesfile ~/.gitignore_global
+# vim+tmux and console tools
+yes | brew install \
+ neovim tmux \
+ parallel coreutils findutils \
+ asdf \
+ direnv \
+ hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
+ htop bottom \
+ jq python-yq jless \
+ urlview \
+ pv \
+ watch watchman \
+ fasd zoxide \
+ imagemagick pngquant \
+ starship ripgrep fd bat dust procs \
+ iftop tcptraceroute mtr telnet nmap \
+ hyperfine gnu-units \
+ ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
+ fortune \
+ dive \
+ ansible golang delve rustup sqlfluff \
+ asciinema agg \
+ bambu-studio \
+ kubernetes-helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
-# vim+tmux
-brew install \
- neovim \
- tmux
 # vim-plugged
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
@@ -46,35 +65,9 @@ if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
 
-# console tools
-brew install parallel --force
-brew install \
- coreutils findutils \
- asdf \
- direnv \
- hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
- htop bottom \
- jq python-yq jless \
- urlview \
- pv \
- watch watchman \
- fasd zoxide fpp \
- imagemagick pngquant \
- starship ripgrep fd bat dust procs \
- iftop tcptraceroute mtr telnet nmap \
- hyperfine gnu-units \
- ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
- fortune \
- dive \
- ansible golang rustup sqlfluff \
- asciinema agg \
- bambu-studio \
- kubernetes-helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
-
 # golang
 go install \
  github.com/x-motemen/gore/cmd/gore@latest \
- github.com/go-delve/delve/cmd/dlv@latest \
  github.com/cirocosta/asciinema-edit@latest
 
 # k8s
