@@ -34,9 +34,6 @@ brew install \
  bambu-studio \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
-# git
-git config --global core.excludesfile ~/.gitignore_global
-
 # prezto
 zsh << EOF
 # copy the base config over and overwrite if needed
@@ -48,9 +45,15 @@ done
 EOF
 
 # dotfiles
+unlink ~/.zpreztorc 
+unlink ~/.zprofile
+unlink ~/.zshrc
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 ghq get -u https://github.com/joaosa/dotfiles
 stow -d "$DOTFILE_DIR" -t "$HOME" $(ls -d */)
+
+# git
+git config --global core.excludesfile ~/.gitignore_global
 
 # vim-plug
 curl -sfLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
