@@ -13,6 +13,7 @@ brew install \
  stow \
  hub gh \
  ghq \
+ lazygit \
  zsh
 
 # prezto
@@ -66,25 +67,24 @@ brew install \
  direnv \
  neofetch \
  imagemagick pngquant \
- ripgrep fd bat procs \
+ starship ripgrep fd bat dust procs \
+ iftop tcptraceroute mtr \
  hyperfine \
  fpp \
- gnu-units \
+ gnu-units datamash \
  ykman \
- openvpn ssh-copy-id esolitos/ipa/sshpass \
+ gnupg ssh-copy-id esolitos/ipa/sshpass \
  pwgen \
  fortune \
  wget httpie \
  htop bottom \
- jq python-yq fx \
+ jq python-yq fx jless \
  hledger \
  watch watchman \
  telnet nmap \
- gnupg \
  magic-wormhole \
  ncdu \
  trash \
- iftop tcptraceroute mtr \
  ansible ansible-lint \
  awscli aws-vault docker-credential-helper-ecr \
  dive \
@@ -93,13 +93,16 @@ brew install \
  tgenv tfenv \
  postgresql minio \
  youtube-dl \
- golang golang-migrate graphviz golangci-lint \
+ golang golang-migrate graphviz \
  haskell-stack \
  rustup \
  asciinema agg \
- exercism
+ exercism \
+ sqlfluff \
+ bambu-studio
 # json schema validation
 npm install -g ajv-cli
+npm install -g lua-fmt
 
 # go
 go install honnef.co/go/tools/cmd/struct-layout@latest
@@ -111,6 +114,7 @@ GO111MODULE=off go get -u github.com/mdempsky/gocode
 GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
 
 go install github.com/cirocosta/asciinema-edit@latest
+pip3 install md2notion
 
 # k8s
 brew install \
