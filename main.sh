@@ -104,15 +104,13 @@ npm install -g ajv-cli
 npm install -g lua-fmt
 
 # go
-go install honnef.co/go/tools/cmd/struct-layout@latest
-go install honnef.co/go/tools/cmd/struct-layout-optimize@latest
-go install github.com/mdempsky/gocode@latest
-go install github.com/x-motemen/gore/cmd/gore@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
-GO111MODULE=off go get -u github.com/mdempsky/gocode
-GO111MODULE=off go get -u github.com/swaggo/swag/cmd/swag
+go install \
+ honnef.co/go/tools/cmd/struct-layout@latest \
+ honnef.co/go/tools/cmd/struct-layout-optimize@latest \
+ github.com/x-motemen/gore/cmd/gore@latest \
+ github.com/go-delve/delve/cmd/dlv@latest \
+ github.com/cirocosta/asciinema-edit@latest
 
-go install github.com/cirocosta/asciinema-edit@latest
 pip3 install md2notion
 
 # k8s
