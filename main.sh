@@ -9,6 +9,8 @@ brew install \
  git \
  git-extras \
  git-delta \
+ git-secret \
+ git-crypt \
  stow \
  hub gh \
  ghq \
