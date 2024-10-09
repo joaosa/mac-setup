@@ -26,7 +26,7 @@ yes | brew install \
  starship ripgrep fd bat dust procs \
  iftop tcptraceroute mtr telnet nmap \
  hyperfine gnu-units \
- ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
+ ykman gnupg esolitos/ipa/sshpass pwgen \
  fortune \
  dive \
  ansible delve rustup sqlfluff \
