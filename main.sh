@@ -9,7 +9,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # git+zsh, vim+tmux, and console tools
 brew tap arl/arl
-yes | brew install \
+brew install \
  git ghq stow zsh \
  neovim tmux \
  parallel coreutils findutils \
