@@ -51,7 +51,6 @@ TPM_PATH=~/.tmux/plugins/tpm
 if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
-go get -u github.com/arl/gitmux
 
 # terminal app fonts
 brew tap homebrew/cask-fonts && brew install --cask font-saucecodepro-nerd-font
@@ -61,6 +60,7 @@ brew install \
  coreutils findutils \
  asdf \
  pv \
+ gitmux \
  urlview \
  fasd zoxide \
  direnv \
