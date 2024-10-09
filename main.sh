@@ -19,7 +19,7 @@ yes | brew install \
  jq python-yq jless \
  urlview \
  pv \
- watch watchman \
+ watch watchman fswatch \
  fasd zoxide \
  imagemagick pngquant \
  starship ripgrep fd bat dust procs \
@@ -72,7 +72,7 @@ go install \
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
 # terminal app fonts & base apps
-brew tap homebrew/cask-fonts homebrew/cask-versions 
+brew tap homebrew/cask-fonts
 brew install --cask \
  font-saucecodepro-nerd-font \
  karabiner-elements hammerspoon \
@@ -84,7 +84,8 @@ brew install --cask \
  mullvadvpn \
  spotify \
  ipfs \
- firefox-developer-edition
+ firefox@developer-edition \
+ google-drive
 
 if false; then
  # latex and writing tools
