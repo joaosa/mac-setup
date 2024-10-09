@@ -29,7 +29,7 @@ yes | brew install \
  ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
  fortune \
  dive \
- ansible golang delve rustup sqlfluff \
+ ansible delve rustup sqlfluff \
  asciinema agg \
  bambu-studio \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
