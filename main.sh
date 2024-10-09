@@ -65,6 +65,7 @@ if [ -z "$(ls -A $TPM_PATH)" ]; then
 fi
 
 # golang
+asdf install golang 23 && asdf use golang 23
 go install \
  github.com/x-motemen/gore/cmd/gore@latest \
  github.com/cirocosta/asciinema-edit@latest
