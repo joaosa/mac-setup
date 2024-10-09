@@ -52,7 +52,7 @@ EOF
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 ghq get -u https://github.com/joaosa/dotfiles
 cd "$DOTFILES_DIR" || exit
-stow -t "$HOME" "$(ls -d ./*/)"
+stow -t "$HOME" "$(ls -d */)"
 cd - || exit
 
 # vim-plug
