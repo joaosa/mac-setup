@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # abort if something fails
 set -ef
 
