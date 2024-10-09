@@ -65,7 +65,6 @@ brew install \
  hyperfine gnu-units \
  ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
  fortune \
- awscli aws-vault docker-credential-helper-ecr \
  dive \
  ansible golang rustup sqlfluff \
  asciinema agg \
