@@ -46,8 +46,6 @@ if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
 
-# terminal app fonts
-brew tap homebrew/cask-fonts && brew install --cask font-saucecodepro-nerd-font
 # console tools
 brew install parallel --force
 brew install \
@@ -69,10 +67,8 @@ brew install \
  fortune \
  awscli aws-vault docker-credential-helper-ecr \
  dive \
- ansible \
- golang rustup \
+ ansible golang rustup sqlfluff \
  asciinema agg \
- sqlfluff \
  bambu-studio \
  kubernetes-helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
@@ -85,9 +81,10 @@ go install \
 # k8s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
-# base apps
-brew tap homebrew/cask-versions 
+# terminal app fonts & base apps
+brew tap homebrew/cask-fonts homebrew/cask-versions 
 brew install --cask \
+ font-saucecodepro-nerd-font \
  karabiner-elements hammerspoon \
  alacritty \
  docker \
