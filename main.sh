@@ -138,12 +138,13 @@ zsh << EOF
  sudo tlmgt collection-latexextra
 EOF
 
+cargo install sniffnet
+
 # base apps
 brew install --cask \
  karabiner-elements \
  alacritty \
  docker \
- syncthing \
  fly \
  ngrok \
  obsidian notion \
