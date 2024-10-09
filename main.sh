@@ -4,35 +4,9 @@ set -euof pipefail
 # homebrew + brew cask
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# git+zsh
-brew install \
- git \
- stow \
- ghq \
- zsh
-git config --global core.excludesfile ~/.gitignore_global
-
-# prezto
-zsh << EOF
-# copy the base config over and overwrite if needed
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-chsh -s /bin/zsh
-EOF
-
-# dotfiles
-DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
-rm -rf "$DOTFILES_DIR"
-ghq get -p https://github.com/joaosa/dotfiles
-cd "$DOTFILES_DIR"
-stow -t "$HOME" $(ls -d */)
-cd -
-
-# vim+tmux and console tools
+# git+zsh, vim+tmux, and console tools
 yes | brew install \
+ git ghq stow zsh \
  neovim tmux \
  parallel coreutils findutils \
  asdf \
@@ -54,10 +28,31 @@ yes | brew install \
  ansible golang delve rustup sqlfluff \
  asciinema agg \
  bambu-studio \
- kubernetes-helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
+ helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
-# vim-plugged
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# git
+git config --global core.excludesfile ~/.gitignore_global
+
+# prezto
+zsh << EOF
+# copy the base config over and overwrite if needed
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+chsh -s /bin/zsh
+EOF
+
+# dotfiles
+DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
+ghq get -up https://github.com/joaosa/dotfiles
+cd "$DOTFILES_DIR"
+stow -t "$HOME" "$(ls -d ./*/)"
+cd -
+
+# vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim -c ":PlugInstall | :qa"
 tmux plugin manager
 TPM_PATH=~/.tmux/plugins/tpm
