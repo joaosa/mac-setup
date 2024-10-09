@@ -50,8 +50,8 @@ EOF
 
 # dotfiles
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
-ghq get -up https://github.com/joaosa/dotfiles
 cd "$DOTFILES_DIR"
+ghq get -u -p https://github.com/joaosa/dotfiles
 stow -t "$HOME" "$(ls -d ./*/)"
 cd -
 
