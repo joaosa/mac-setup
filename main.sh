@@ -63,6 +63,11 @@ if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
 
+# node
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
+ && asdf install nodejs 22.9.0 \
+ && asdf global nodejs 22.9.0
+
 # golang
 asdf plugin add golang https://github.com/asdf-community/asdf-golang.git \
  && asdf install golang 1.23.2 \
