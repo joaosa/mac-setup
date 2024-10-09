@@ -9,14 +9,8 @@ set -ef
 # git+zsh
 brew install \
  git \
- git-extras \
- git-delta \
- git-secret \
- git-crypt \
  stow \
- hub gh \
  ghq \
- lazygit \
  zsh
 
 # prezto
@@ -61,68 +55,36 @@ brew install parallel --force
 brew install \
  coreutils findutils \
  asdf \
- pv \
- gitmux \
- urlview \
- fasd zoxide \
  direnv \
- neofetch \
+ hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
+ htop bottom \
+ jq python-yq jless \
+ urlview \
+ pv \
+ watch watchman \
+ fasd zoxide fpp \
  imagemagick pngquant \
  starship ripgrep fd bat dust procs \
- iftop tcptraceroute mtr \
- hyperfine \
- fpp \
- gnu-units datamash \
- ykman \
- gnupg ssh-copy-id esolitos/ipa/sshpass \
- pwgen \
+ iftop tcptraceroute mtr telnet nmap \
+ hyperfine gnu-units \
+ ykman gnupg ssh-copy-id esolitos/ipa/sshpass pwgen \
  fortune \
- wget httpie \
- htop bottom \
- jq python-yq fx jless \
- hledger \
- watch watchman \
- telnet nmap \
- magic-wormhole \
- ncdu \
- trash \
- ansible ansible-lint \
  awscli aws-vault docker-credential-helper-ecr \
  dive \
- kafka kcat \
- vault \
- tgenv tfenv \
- postgresql minio \
- youtube-dl \
- golang golang-migrate graphviz \
- haskell-stack \
- rustup \
+ ansible \
+ golang rustup \
  asciinema agg \
- exercism \
  sqlfluff \
- bambu-studio
-# json schema validation
-npm install -g ajv-cli
-npm install -g lua-fmt
+ bambu-studio \
+ kubernetes-helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
-# go
+# golang
 go install \
- honnef.co/go/tools/cmd/struct-layout@latest \
- honnef.co/go/tools/cmd/struct-layout-optimize@latest \
  github.com/x-motemen/gore/cmd/gore@latest \
  github.com/go-delve/delve/cmd/dlv@latest \
  github.com/cirocosta/asciinema-edit@latest
 
 # k8s
-brew install \
- fluxctl \
- fluxcd/tap/flux \
- kubernetes-helm \
- kubectl \
- kubeseal \
- kubectx \
- k3d \
- derailed/k9s/k9s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
 # latex and writing tools
