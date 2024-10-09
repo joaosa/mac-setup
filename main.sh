@@ -56,8 +56,8 @@ stow -t "$HOME" "$(ls -d */)"
 cd - || exit
 
 # vim-plug
-sh -c 'curl -sfLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim -c ":PlugInstall | :qa"
+sh -c 'curl -sfLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && nvim -c ":PlugInstall | :qa"'
+# tmux package manager
 tmux plugin manager
 TPM_PATH=~/.tmux/plugins/tpm
 if [ -z "$(ls -A $TPM_PATH)" ]; then
