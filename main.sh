@@ -93,7 +93,7 @@ brew install --cask \
  mullvadvpn \
  spotify \
  ipfs \
- google-chrome firefox-developer-edition
+ firefox-developer-edition
 
 if false; then
  # latex and writing tools
