@@ -50,9 +50,7 @@ EOF
 # dotfiles
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 ghq get -u https://github.com/joaosa/dotfiles
-cd "$DOTFILES_DIR" || exit
-stow -t "$HOME" "$(ls -d */)"
-cd - || exit
+stow -d "$DOTFILE_DIR" -t "$HOME" $(ls -d */)
 
 # vim-plug
 curl -sfLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
