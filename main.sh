@@ -73,9 +73,8 @@ go install \
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
 # terminal app fonts & base apps
-brew tap homebrew/cask-fonts
 brew install --cask \
- font-saucecodepro-nerd-font \
+ font-sauce-code-pro-nerd-font \
  karabiner-elements hammerspoon \
  alacritty \
  docker \
