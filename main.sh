@@ -54,7 +54,7 @@ stow -d "$DOTFILES_DIR" -t "$HOME" .
 git config --global core.excludesfile ~/.gitignore_global
 
 # vim-plug
-curl -sfLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
 # tmux package manager
 tmux plugin manager
