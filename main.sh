@@ -87,9 +87,24 @@ go install \
 # k8s
 curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
 
-# latex and writing tools
-brew install adr-tools
-brew install --cask basictex
+# base apps
+brew tap homebrew/cask-versions 
+brew install --cask \
+ karabiner-elements hammerspoon \
+ alacritty \
+ docker \
+ obsidian \
+ flux \
+ slack signal discord \
+ mullvadvpn \
+ spotify \
+ ipfs \
+ google-chrome firefox-developer-edition
+
+if false; then
+ # latex and writing tools
+ brew install adr-tools
+ brew install --cask basictex
 zsh << EOF
  if ! ls /Users/$USER/Library/texmf/tlpkg/texlive.tlpdb > /dev/null; then tlmgr init-usertree; fi
  sudo tlmgr update --self
@@ -97,26 +112,4 @@ zsh << EOF
  sudo tlmgr install moderncv
  sudo tlmgt collection-latexextra
 EOF
-
-cargo install sniffnet
-
-# base apps
-brew install --cask \
- karabiner-elements \
- alacritty \
- docker \
- fly \
- ngrok \
- obsidian \
- hammerspoon \
- utm \
- flux \
- slack \
- signal \
- mullvadvpn \
- caffeine \
- spotify \
- discord \
- ipfs \
- google-chrome
-brew tap homebrew/cask-versions && brew install --cask firefox-developer-edition
+fi
