@@ -111,8 +111,6 @@ go install \
  github.com/go-delve/delve/cmd/dlv@latest \
  github.com/cirocosta/asciinema-edit@latest
 
-pip3 install md2notion
-
 # k8s
 brew install \
  fluxctl \
@@ -145,7 +143,7 @@ brew install --cask \
  docker \
  fly \
  ngrok \
- obsidian notion \
+ obsidian \
  hammerspoon \
  utm \
  flux \
