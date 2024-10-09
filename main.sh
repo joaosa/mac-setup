@@ -21,7 +21,7 @@ yes | brew install \
  urlview \
  pv \
  watch watchman fswatch \
- fasd zoxide \
+ zoxide \
  imagemagick pngquant \
  starship ripgrep fd bat dust procs \
  iftop tcptraceroute mtr telnet nmap \
