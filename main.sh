@@ -50,6 +50,9 @@ DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 ghq get -u https://github.com/joaosa/dotfiles
 stow -d "$DOTFILES_DIR" -t "$HOME" $(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
 
+# fzf
+$(brew --prefix)/opt/fzf/install
+
 # git
 git config --global core.excludesfile ~/.gitignore_global
 
