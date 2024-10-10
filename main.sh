@@ -10,7 +10,7 @@ brew tap arl/arl
 brew install \
  git ghq stow zsh \
  neovim tmux \
- parallel coreutils findutils \
+ parallel grep coreutils findutils \
  asdf \
  direnv \
  hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
