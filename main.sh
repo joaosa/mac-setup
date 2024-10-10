@@ -15,7 +15,7 @@ brew install \
  direnv \
  hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
  htop bottom \
- jq python-yq jless miller \
+ jq python-yq jless miller jd \
  urlview \
  pv \
  watch watchman fswatch \
