@@ -19,7 +19,7 @@ brew install \
  urlview \
  pv \
  watch watchman fswatch \
- zoxide \
+ zoxide fzf \
  imagemagick pngquant \
  starship ripgrep fd bat dust procs \
  iftop tcptraceroute mtr telnet nmap \
