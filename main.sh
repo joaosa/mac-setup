@@ -53,6 +53,9 @@ stow -d "$DOTFILES_DIR" -t "$HOME" $(find "$DOTFILES_DIR" -maxdepth 1 -type d -n
 # git
 git config --global core.excludesfile ~/.gitignore_global
 
+# parallel
+yes 'will cite' | parallel --citation
+
 # vim-plug
 curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
