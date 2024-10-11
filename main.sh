@@ -71,7 +71,8 @@ fi
 
 # rust
 rustup install stable \
- && rustup default stable
+ && rustup default stable \
+ && echo 1 | rustup-init
 
 # node
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
