@@ -29,7 +29,6 @@ brew install \
  dive \
  ansible delve rustup sqlfluff \
  asciinema agg \
- bambu-studio \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
 # prezto
@@ -98,12 +97,13 @@ brew install --cask \
  font-sauce-code-pro-nerd-font \
  karabiner-elements hammerspoon \
  alacritty \
- docker \
  obsidian \
  flux \
  slack signal discord \
  mullvadvpn \
+ bambu-studio \
  spotify \
+ docker \
  ipfs \
  firefox@developer-edition \
  google-drive
