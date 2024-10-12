@@ -18,7 +18,7 @@ brew install \
  jq python-yq jless miller jd \
  urlview \
  pv \
- watch watchman fswatch \
+ watch watchexec watchman fswatch \
  zoxide fzf \
  imagemagick pngquant \
  starship ripgrep fd bat dust procs \
