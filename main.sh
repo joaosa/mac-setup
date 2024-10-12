@@ -102,6 +102,7 @@ brew install --cask \
  slack signal discord \
  mullvadvpn \
  bambu-studio \
+ orcaslicer \
  spotify \
  docker \
  ipfs \
