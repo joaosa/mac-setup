@@ -79,7 +79,7 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
  && asdf global nodejs 22.9.0
 
 # vim
-npm install -g vim-language-server
+npm install -g vim-language-server typescript
 
 # golang
 asdf plugin add golang https://github.com/asdf-community/asdf-golang.git \
