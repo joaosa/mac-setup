@@ -70,12 +70,6 @@ if [ ! -f ~/.parallel/will-cite ]; then
   yes 'will cite' | parallel --citation
 fi
 
-# tmux package manager
-TPM_PATH=~/.tmux/plugins/tpm
-if [ ! -d "$TPM_PATH" ] || [ -z "$(ls -A $TPM_PATH)" ]; then
- git clone https://github.com/tmux-plugins/tpm $TPM_PATH
-fi
-
 # rust
 if ! command -v rustc >/dev/null 2>&1; then
   rustup install stable \
