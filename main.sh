@@ -138,6 +138,7 @@ brew install --cask \
  docker \
  ipfs \
  firefox@developer-edition \
+ syncthing \
  google-drive
 
 if false; then
