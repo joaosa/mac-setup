@@ -2,7 +2,9 @@
 set -ufo pipefail
 
 # homebrew + brew cask
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # git+zsh, vim+tmux, and console tools
@@ -32,7 +34,8 @@ brew install \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
 # prezto
-zsh << EOF
+if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
+  zsh << EOF
 # copy the base config over and overwrite if needed
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 setopt EXTENDED_GLOB
@@ -40,53 +43,91 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -sf "\$rcfile" "${ZDOTDIR:-$HOME}/.\${rcfile:t}"
 done
 EOF
+fi
 
 # dotfiles
-unlink ~/.zpreztorc 
-unlink ~/.zprofile
-unlink ~/.zshrc
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
-ghq get -u https://github.com/joaosa/dotfiles
+if [ ! -d "$DOTFILES_DIR" ]; then
+  ghq get -u https://github.com/joaosa/dotfiles
+fi
+[ -L ~/.zpreztorc ] && unlink ~/.zpreztorc 
+[ -L ~/.zprofile ] && unlink ~/.zprofile
+[ -L ~/.zshrc ] && unlink ~/.zshrc
 stow -d "$DOTFILES_DIR" -t "$HOME" $(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
 
 # fzf
-$(brew --prefix)/opt/fzf/install
+if [ ! -f ~/.fzf.bash ] && [ ! -f ~/.fzf.zsh ]; then
+  $(brew --prefix)/opt/fzf/install --all
+fi
 
 # git
-git config --global core.excludesfile ~/.gitignore_global
+if [ -f ~/.gitignore_global ] && [ "$(git config --global --get core.excludesfile)" != "$HOME/.gitignore_global" ]; then
+  git config --global core.excludesfile ~/.gitignore_global
+fi
 
 # parallel
-yes 'will cite' | parallel --citation
+if [ ! -f ~/.parallel/will-cite ]; then
+  yes 'will cite' | parallel --citation
+fi
 
 # vim-plug
-curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim -c ":PlugInstall | :qa"
+if [ ! -f ~/.config/nvim/autoload/plug.vim ]; then
+  curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  nvim -c ":PlugInstall | :qa"
+fi
 # tmux package manager
 TPM_PATH=~/.tmux/plugins/tpm
-if [ -z "$(ls -A $TPM_PATH)" ]; then
+if [ ! -d "$TPM_PATH" ] || [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 fi
 
 # rust
-rustup install stable \
- && rustup default stable \
- && echo 1 | rustup-init
+if ! command -v rustc >/dev/null 2>&1; then
+  rustup install stable \
+   && rustup default stable \
+   && echo 1 | rustup-init
+fi
 
 # node
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git \
- && asdf install nodejs 22.9.0 \
- && asdf global nodejs 22.9.0
+if ! asdf plugin list | grep -q nodejs; then
+  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+fi
+if ! asdf list nodejs | grep -q 22.9.0; then
+  asdf install nodejs 22.9.0
+fi
+if [ "$(asdf current nodejs | awk '{print $2}')" != "22.9.0" ]; then
+  asdf global nodejs 22.9.0
+fi
+
+# vim
+if ! npm list -g @fsouza/prettierd >/dev/null 2>&1; then
+  npm install -g @fsouza/prettierd
+fi
+if ! npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
+  npm install -g @anthropic-ai/claude-code
+fi
 
 # golang
-asdf plugin add golang https://github.com/asdf-community/asdf-golang.git \
- && asdf install golang 1.23.2 \
- && asdf global golang 1.23.2
-go install \
- github.com/x-motemen/gore/cmd/gore@latest \
- github.com/cirocosta/asciinema-edit@latest
+if ! asdf plugin list | grep -q golang; then
+  asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+fi
+if ! asdf list golang | grep -q 1.23.2; then
+  asdf install golang 1.23.2
+fi
+if [ "$(asdf current golang | awk '{print $2}')" != "1.23.2" ]; then
+  asdf global golang 1.23.2
+fi
+if ! command -v gore >/dev/null 2>&1; then
+  go install github.com/x-motemen/gore/cmd/gore@latest
+fi
+if ! command -v asciinema-edit >/dev/null 2>&1; then
+  go install github.com/cirocosta/asciinema-edit@latest
+fi
 
 # k8s
-curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
+if [ ! -f ~/.kubectl_aliases ]; then
+  curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
+fi
 
 # terminal app fonts & base apps
 brew install --cask \
