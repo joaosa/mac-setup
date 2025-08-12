@@ -62,7 +62,6 @@ yes 'will cite' | parallel --citation
 curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall | :qa"
 # tmux package manager
-tmux plugin manager
 TPM_PATH=~/.tmux/plugins/tpm
 if [ -z "$(ls -A $TPM_PATH)" ]; then
  git clone https://github.com/tmux-plugins/tpm $TPM_PATH
