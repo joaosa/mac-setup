@@ -70,11 +70,6 @@ if [ ! -f ~/.parallel/will-cite ]; then
   yes 'will cite' | parallel --citation
 fi
 
-# vim-plug
-if [ ! -f ~/.config/nvim/autoload/plug.vim ]; then
-  curl -sfLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  nvim -c ":PlugInstall | :qa"
-fi
 # tmux package manager
 TPM_PATH=~/.tmux/plugins/tpm
 if [ ! -d "$TPM_PATH" ] || [ -z "$(ls -A $TPM_PATH)" ]; then
