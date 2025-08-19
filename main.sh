@@ -29,7 +29,7 @@ brew install \
  ykman gnupg esolitos/ipa/sshpass pwgen \
  fortune \
  dive \
- ansible delve rustup sqlfluff \
+ ansible delve luarocks rustup sqlfluff \
  asciinema agg \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
@@ -50,7 +50,7 @@ DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 if [ ! -d "$DOTFILES_DIR" ]; then
   ghq get -u https://github.com/joaosa/dotfiles
 fi
-[ -L ~/.zpreztorc ] && unlink ~/.zpreztorc 
+[ -L ~/.zpreztorc ] && unlink ~/.zpreztorc
 [ -L ~/.zprofile ] && unlink ~/.zprofile
 [ -L ~/.zshrc ] && unlink ~/.zshrc
 stow -d "$DOTFILES_DIR" -t "$HOME" $(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
