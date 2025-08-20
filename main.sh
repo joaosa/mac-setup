@@ -29,7 +29,7 @@ brew install \
  ykman gnupg esolitos/ipa/sshpass pwgen \
  fortune \
  dive \
- ansible delve luarocks rustup sqlfluff \
+ ansible delve luarocks rustup \
  asciinema agg \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
@@ -89,9 +89,6 @@ if [ "$(asdf current nodejs | awk '{print $2}')" != "22.9.0" ]; then
 fi
 
 # vim
-if ! npm list -g @fsouza/prettierd >/dev/null 2>&1; then
-  npm install -g @fsouza/prettierd
-fi
 if ! npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
   npm install -g @anthropic-ai/claude-code
 fi
