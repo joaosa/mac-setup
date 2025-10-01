@@ -31,6 +31,7 @@ brew install \
  dive \
  ansible delve luarocks rustup \
  asciinema agg \
+ sox whisper-cpp \
  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
 
 # prezto
@@ -113,6 +114,13 @@ fi
 # k8s
 if [ ! -f ~/.kubectl_aliases ]; then
   curl -s https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases > ~/.kubectl_aliases
+fi
+
+# whisper model
+if [ ! -f ~/.local/share/whisper/ggml-base.en.bin ]; then
+  mkdir -p ~/.local/share/whisper
+  curl -L -o ~/.local/share/whisper/ggml-base.en.bin \
+    https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin
 fi
 
 # terminal app fonts & base apps
