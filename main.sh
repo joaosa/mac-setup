@@ -129,7 +129,6 @@ brew install --cask \
  karabiner-elements hammerspoon \
  alacritty \
  obsidian \
- flux \
  slack signal discord \
  mullvadvpn \
  orcaslicer \
