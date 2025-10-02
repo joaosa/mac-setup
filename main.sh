@@ -15,7 +15,7 @@ brew install \
  parallel coreutils findutils grep gnu-sed \
  asdf \
  direnv \
- hub gh git-extras git-delta git-secret git-crypt gitmux lazygit \
+ hub gh git-extras git-delta git-secret git-crypt gitmux \
  htop bottom \
  jq python-yq jless miller jd \
  urlview \
