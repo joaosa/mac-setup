@@ -1,7 +1,6 @@
 # Third-party taps - Review before installing
 tap "arl/arl"        # gitmux - Git integration for tmux status bar
 tap "derailed/k9s"   # k9s - Kubernetes cluster management CLI
-tap "esolitos/ipa"   # sshpass - Non-interactive SSH password provider
 
 # Development tools
 brew "git"
@@ -82,7 +81,6 @@ brew "gnu-units"
 # Security
 brew "ykman"
 brew "gnupg"
-brew "esolitos/ipa/sshpass"
 brew "pwgen"
 brew "mkcert"
 
