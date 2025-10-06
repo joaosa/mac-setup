@@ -133,12 +133,6 @@ install_asdf_language() {
   else
     log_skip "$language $version already installed"
   fi
-
-  # Set as global version
-  if [ "$(asdf current "$language" 2>/dev/null | awk '{print $2}')" != "$version" ]; then
-    asdf set "$language" "$version"
-    log_success "Set $language global version to $version"
-  fi
 }
 
 # Install go packages from array
