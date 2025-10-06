@@ -158,9 +158,12 @@ install_npm_packages() {
 # Pin all homebrew packages to prevent auto-updates
 # Usage: pin_brew_packages
 pin_brew_packages() {
+  # Get list of already pinned packages once (not in loop for performance)
+  local pinned_packages=$(brew list --pinned)
+
   # Pin all installed formulae
   for package in $(brew list --formula); do
-    if ! brew list --pinned | grep -q "^${package}$"; then
+    if ! echo "$pinned_packages" | grep -q "^${package}$"; then
       brew pin "$package" >/dev/null 2>&1
       log_success "Pinned: $package"
     else
