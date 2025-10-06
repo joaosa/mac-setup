@@ -90,12 +90,31 @@ WHISPER_MODEL_SHA256="a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36
 # HELPER FUNCTIONS
 # ============================================================================
 
+# Get version from .tool-versions file
+# Usage: get_tool_version "nodejs"
+get_tool_version() {
+  local tool="$1"
+  local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local tool_versions_file="$script_dir/.tool-versions"
+
+  if [ -f "$tool_versions_file" ]; then
+    grep "^${tool} " "$tool_versions_file" | awk '{print $2}'
+  else
+    echo ""
+  fi
+}
+
 # Install asdf language with version
-# Usage: install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git" "22.9.0"
+# Usage: install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 install_asdf_language() {
   local language="$1"
   local repo="$2"
-  local version="$3"
+  local version="${3:-$(get_tool_version "$language")}"
+
+  if [ -z "$version" ]; then
+    log_error "No version found for $language"
+    return 1
+  fi
 
   # Add plugin if not present
   if ! asdf plugin list | grep -q "^${language}$"; then
@@ -358,14 +377,14 @@ else
 fi
 
 # node
-install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git" "22.9.0"
+install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
 # npm packages
 log_info "Installing npm packages..."
 install_npm_packages
 
 # golang
-install_asdf_language "golang" "https://github.com/asdf-community/asdf-golang.git" "1.23.2"
+install_asdf_language "golang" "https://github.com/asdf-community/asdf-golang.git"
 
 # go packages
 log_info "Installing Go packages..."
