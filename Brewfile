@@ -84,6 +84,7 @@ brew "ykman"
 brew "gnupg"
 brew "esolitos/ipa/sshpass"
 brew "pwgen"
+brew "mkcert"
 
 # Fun
 brew "fortune"
