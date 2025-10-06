@@ -27,10 +27,10 @@ NPM_PACKAGES=(
 # File downloads with integrity verification
 # To regenerate checksums: curl -fsSL <URL> | shasum -a 256
 KUBECTL_ALIASES_URL="https://raw.githubusercontent.com/ahmetb/kubectl-aliases/7549fa45bbde7499b927c74cae13bfb9169c9497/.kubectl_aliases"
-KUBECTL_ALIASES_SHA256="8b1d8db48d6c27b9fef88dace88fd8c753eec96e59cdec4b71c330dc74e33cfb"
+KUBECTL_ALIASES_SHA256="2aa6fa924d84663a17e797e566a8ae3512c94037c2d973203be177b720849ea9"
 
 WHISPER_MODEL_URL="https://huggingface.co/ggerganov/whisper.cpp/resolve/80da2d8bfee42b0e836fc3a9890373e5defc00a6/ggml-base.en.bin"
-WHISPER_MODEL_SHA256="137c40403d78fd54d454da0f9bd998f78703390afd14a0cd175250ba0e0d4816"
+WHISPER_MODEL_SHA256="a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002"
 
 # ============================================================================
 # HELPER FUNCTIONS
