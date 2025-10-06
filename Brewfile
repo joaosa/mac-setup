@@ -1,6 +1,7 @@
-tap "arl/arl"
-tap "derailed/k9s"
-tap "esolitos/ipa"
+# Third-party taps - Review before installing
+tap "arl/arl"        # gitmux - Git integration for tmux status bar
+tap "derailed/k9s"   # k9s - Kubernetes cluster management CLI
+tap "esolitos/ipa"   # sshpass - Non-interactive SSH password provider
 
 # Development tools
 brew "git"
