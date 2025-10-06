@@ -274,7 +274,18 @@ if brew bundle check --file=Brewfile >/dev/null 2>&1; then
   log_skip "All Brewfile packages already installed"
 else
   log_info "Installing packages from Brewfile..."
-  brew bundle --file=Brewfile
+  if ! bundle_output=$(brew bundle --file=Brewfile 2>&1); then
+    echo "$bundle_output"
+    # Check for pin errors and provide helpful unpin commands
+    if echo "$bundle_output" | grep -q "must.*brew unpin"; then
+      echo ""
+      log_warn "Installation blocked by pinned dependencies."
+      echo "$bundle_output" | grep "must.*brew unpin" | sed -E 's/.*`(brew unpin [^`]+)`.*/  \1/' | sort -u
+      exit 1
+    fi
+    log_error "Brewfile installation failed"
+    exit 1
+  fi
   log_success "Brewfile packages installed"
 fi
 
