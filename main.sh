@@ -5,52 +5,6 @@ set -euo pipefail
 # CONFIGURATION
 # ============================================================================
 
-DESIRED_TAPS=(
-  "arl/arl"
-)
-
-DESIRED_PACKAGES=(
-  git ghq stow zsh
-  neovim tmux
-  parallel coreutils findutils grep gnu-sed
-  asdf
-  direnv
-  hub gh git-extras git-delta git-secret git-crypt gitmux
-  htop bottom
-  jq python-yq jless miller jd
-  urlview
-  pv
-  watch watchexec watchman fswatch
-  zoxide fzf
-  imagemagick pngquant
-  starship ripgrep fd bat dust procs
-  iftop tcptraceroute mtr telnet nmap
-  hyperfine gnu-units
-  ykman gnupg esolitos/ipa/sshpass pwgen
-  fortune
-  dive
-  ansible delve luarocks rustup
-  asciinema agg
-  websocat sox whisper-cpp
-  helm kubectl kubeseal kubectx k3d derailed/k9s/k9s
-)
-
-DESIRED_CASKS=(
-  font-sauce-code-pro-nerd-font
-  karabiner-elements hammerspoon
-  alacritty
-  obsidian
-  slack signal discord
-  mullvadvpn
-  orcaslicer
-  spotify
-  docker
-  ipfs
-  firefox@developer-edition
-  syncthing
-  google-drive
-)
-
 GO_PACKAGES=(
   "github.com/x-motemen/gore/cmd/gore@v0.6.1"
   "github.com/cirocosta/asciinema-edit@latest"  # No version tags available
@@ -63,38 +17,6 @@ NPM_PACKAGES=(
 # ============================================================================
 # HELPER FUNCTIONS
 # ============================================================================
-
-# Unified brew cleanup function
-# Usage: cleanup_brew "packages" or cleanup_brew "casks"
-cleanup_brew() {
-  local type="$1"
-  local desired_list installed_items uninstall_flag
-
-  if [ "$type" = "packages" ]; then
-    echo "Cleaning up unlisted brew packages..."
-    installed_items=$(brew leaves)
-    desired_list="${DESIRED_PACKAGES[*]}"
-    uninstall_flag=""
-  else
-    echo "Cleaning up unlisted brew casks..."
-    installed_items=$(brew list --cask)
-    desired_list="${DESIRED_CASKS[*]}"
-    uninstall_flag="--cask"
-  fi
-
-  while IFS= read -r item; do
-    [ -z "$item" ] && continue
-
-    # Extract item name (remove tap/version prefix if present)
-    item_name=$(echo "$item" | awk -F'/' '{print $NF}' | awk -F'@' '{print $1}')
-
-    # Check if item is in desired list
-    if ! echo "$desired_list" | grep -qw "$item" && ! echo "$desired_list" | grep -qw "$item_name"; then
-      echo "Removing unlisted $type: $item"
-      brew uninstall $uninstall_flag "$item" || true
-    fi
-  done <<< "$installed_items"
-}
 
 # Install asdf language with version
 # Usage: install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git" "22.9.0"
@@ -147,15 +69,11 @@ install_npm_packages() {
 # Pin all homebrew packages to prevent auto-updates
 # Usage: pin_brew_packages
 pin_brew_packages() {
-  for package in "${DESIRED_PACKAGES[@]}"; do
-    # Extract package name without tap prefix
-    local package_name=$(echo "$package" | awk -F'/' '{print $NF}')
-
-    if brew list "$package_name" >/dev/null 2>&1; then
-      if ! brew list --pinned | grep -q "^${package_name}$"; then
-        echo "Pinning $package_name to current version"
-        brew pin "$package_name"
-      fi
+  # Pin all installed formulae
+  for package in $(brew list --formula); do
+    if ! brew list --pinned | grep -q "^${package}$"; then
+      echo "Pinning $package to current version"
+      brew pin "$package"
     fi
   done
 }
@@ -187,21 +105,14 @@ fi
 # HOMEBREW PACKAGES & CASKS
 # ============================================================================
 
-# Tap repositories
-for tap in "${DESIRED_TAPS[@]}"; do
-  if ! brew tap | grep -q "^${tap}$"; then
-    brew tap "$tap"
-  fi
-done
-
-# Install desired packages (brew install is idempotent)
-brew install "${DESIRED_PACKAGES[@]}"
+# Install from Brewfile
+brew bundle --file=Brewfile
 
 # Pin packages to prevent auto-updates
 pin_brew_packages
 
-# Clean up unlisted packages
-cleanup_brew "packages"
+# Clean up packages not in Brewfile
+brew bundle cleanup --force --file=Brewfile
 
 # ============================================================================
 # SHELL & DOTFILES
@@ -277,16 +188,6 @@ download_if_missing "$HOME/.kubectl_aliases" "https://raw.githubusercontent.com/
 
 # whisper model
 download_if_missing "$HOME/.local/share/whisper/ggml-base.en.bin" "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin"
-
-# ============================================================================
-# GUI APPLICATIONS
-# ============================================================================
-
-# Install desired casks (brew install --cask is idempotent)
-brew install --cask "${DESIRED_CASKS[@]}"
-
-# Clean up unlisted casks
-cleanup_brew "casks"
 
 if false; then
  # latex and writing tools
