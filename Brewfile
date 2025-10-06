@@ -1,6 +1,3 @@
-# Third-party taps - Review before installing
-tap "arl/arl"        # gitmux - Git integration for tmux status bar
-
 # Development tools
 brew "git"
 brew "ghq"
