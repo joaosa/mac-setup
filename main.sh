@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# DRY_RUN mode: Set to "true" to preview changes without executing them
+DRY_RUN="${DRY_RUN:-false}"
+
+if [ "$DRY_RUN" = "true" ]; then
+  echo "=== DRY RUN MODE ==="
+  echo "No changes will be made to the system."
+  echo "To execute for real, run: DRY_RUN=false $0"
+  echo ""
+fi
+
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
@@ -101,11 +111,16 @@ download_if_missing() {
         return 0
       else
         echo "Warning: Existing file has incorrect checksum, re-downloading..."
-        rm -f "$file_path"
+        [ "$DRY_RUN" = "false" ] && rm -f "$file_path"
       fi
     else
       return 0
     fi
+  fi
+
+  if [ "$DRY_RUN" = "true" ]; then
+    echo "[DRY RUN] Would download: $url -> $file_path"
+    return 0
   fi
 
   # Download file
@@ -191,7 +206,9 @@ else
 fi
 
 # Stow dotfiles (restow to ensure idempotency)
-stow -d "$DOTFILES_DIR" -t "$HOME" --restow $(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
+# Use array to properly handle directory names with spaces
+mapfile -t stow_dirs < <(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
+stow -d "$DOTFILES_DIR" -t "$HOME" --restow "${stow_dirs[@]}"
 
 # fzf
 if [ ! -f ~/.fzf.bash ] && [ ! -f ~/.fzf.zsh ]; then
