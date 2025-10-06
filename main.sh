@@ -52,8 +52,12 @@ DESIRED_CASKS=(
 )
 
 GO_PACKAGES=(
-  "github.com/x-motemen/gore/cmd/gore@latest"
-  "github.com/cirocosta/asciinema-edit@latest"
+  "github.com/x-motemen/gore/cmd/gore@v0.6.1"
+  "github.com/cirocosta/asciinema-edit@latest"  # No version tags available
+)
+
+NPM_PACKAGES=(
+  "@anthropic-ai/claude-code@2.0.8"
 )
 
 # ============================================================================
@@ -126,6 +130,36 @@ install_go_packages() {
   done
 }
 
+# Install npm packages from array with version locking
+# Usage: install_npm_packages
+install_npm_packages() {
+  for package in "${NPM_PACKAGES[@]}"; do
+    local package_name=$(echo "$package" | awk -F'@' '{print $1}')
+    local package_version=$(echo "$package" | awk -F'@' '{print $2}')
+
+    # Check if package is installed with correct version
+    if ! npm list -g "$package_name@$package_version" --depth=0 >/dev/null 2>&1; then
+      npm install -g "$package"
+    fi
+  done
+}
+
+# Pin all homebrew packages to prevent auto-updates
+# Usage: pin_brew_packages
+pin_brew_packages() {
+  for package in "${DESIRED_PACKAGES[@]}"; do
+    # Extract package name without tap prefix
+    local package_name=$(echo "$package" | awk -F'/' '{print $NF}')
+
+    if brew list "$package_name" >/dev/null 2>&1; then
+      if ! brew list --pinned | grep -q "^${package_name}$"; then
+        echo "Pinning $package_name to current version"
+        brew pin "$package_name"
+      fi
+    fi
+  done
+}
+
 # Download file if not exists
 # Usage: download_if_missing "path/to/file" "url"
 download_if_missing() {
@@ -162,6 +196,9 @@ done
 
 # Install desired packages (brew install is idempotent)
 brew install "${DESIRED_PACKAGES[@]}"
+
+# Pin packages to prevent auto-updates
+pin_brew_packages
 
 # Clean up unlisted packages
 cleanup_brew "packages"
@@ -222,10 +259,8 @@ fi
 # node
 install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git" "22.9.0"
 
-# claude-code
-if ! command -v claude-code >/dev/null 2>&1; then
-  npm install -g @anthropic-ai/claude-code
-fi
+# npm packages
+install_npm_packages
 
 # golang
 install_asdf_language "golang" "https://github.com/asdf-community/asdf-golang.git" "1.23.2"
