@@ -7,12 +7,20 @@ set -euo pipefail
 
 GO_PACKAGES=(
   "github.com/x-motemen/gore/cmd/gore@v0.6.1"
-  "github.com/cirocosta/asciinema-edit@latest"  # No version tags available
+  "github.com/cirocosta/asciinema-edit@v0.2.0"
 )
 
 NPM_PACKAGES=(
   "@anthropic-ai/claude-code@2.0.8"
 )
+
+# File downloads with integrity verification
+# To regenerate checksums: curl -fsSL <URL> | shasum -a 256
+KUBECTL_ALIASES_URL="https://raw.githubusercontent.com/ahmetb/kubectl-aliases/7549fa45bbde7499b927c74cae13bfb9169c9497/.kubectl_aliases"
+KUBECTL_ALIASES_SHA256="8b1d8db48d6c27b9fef88dace88fd8c753eec96e59cdec4b71c330dc74e33cfb"
+
+WHISPER_MODEL_URL="https://huggingface.co/ggerganov/whisper.cpp/resolve/80da2d8bfee42b0e836fc3a9890373e5defc00a6/ggml-base.en.bin"
+WHISPER_MODEL_SHA256="137c40403d78fd54d454da0f9bd998f78703390afd14a0cd175250ba0e0d4816"
 
 # ============================================================================
 # HELPER FUNCTIONS
@@ -78,16 +86,51 @@ pin_brew_packages() {
   done
 }
 
-# Download file if not exists
-# Usage: download_if_missing "path/to/file" "url"
+# Download file if not exists with SHA256 checksum verification
+# Usage: download_if_missing "path/to/file" "url" "expected_sha256"
 download_if_missing() {
   local file_path="$1"
   local url="$2"
+  local expected_sha256="$3"
 
-  if [ ! -f "$file_path" ]; then
-    mkdir -p "$(dirname "$file_path")"
-    curl -sL -o "$file_path" "$url"
+  # If file exists and checksum matches, skip download
+  if [ -f "$file_path" ]; then
+    if [ -n "$expected_sha256" ]; then
+      local actual_sha256=$(shasum -a 256 "$file_path" | awk '{print $1}')
+      if [ "$actual_sha256" = "$expected_sha256" ]; then
+        return 0
+      else
+        echo "Warning: Existing file has incorrect checksum, re-downloading..."
+        rm -f "$file_path"
+      fi
+    else
+      return 0
+    fi
   fi
+
+  # Download file
+  mkdir -p "$(dirname "$file_path")"
+  local temp_file="${file_path}.tmp"
+
+  if ! curl -fsSL -o "$temp_file" "$url"; then
+    rm -f "$temp_file"
+    echo "Error: Failed to download $url"
+    return 1
+  fi
+
+  # Verify checksum if provided
+  if [ -n "$expected_sha256" ]; then
+    local actual_sha256=$(shasum -a 256 "$temp_file" | awk '{print $1}')
+    if [ "$actual_sha256" != "$expected_sha256" ]; then
+      rm -f "$temp_file"
+      echo "Error: Checksum verification failed for $url"
+      echo "Expected: $expected_sha256"
+      echo "Got:      $actual_sha256"
+      return 1
+    fi
+  fi
+
+  mv "$temp_file" "$file_path"
 }
 
 # ============================================================================
@@ -95,7 +138,12 @@ download_if_missing() {
 # ============================================================================
 
 # homebrew
+# Note: Homebrew's official installer uses curl | bash pattern. While not ideal from a
+# security perspective, this is the official installation method. For enhanced security,
+# you can download the script first, review it, then execute manually.
+# See: https://github.com/Homebrew/install
 if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   # Add to PATH (Apple Silicon uses /opt/homebrew, Intel uses /usr/local)
   export PATH="${PATH:+$PATH:}/opt/homebrew/bin:/usr/local/bin"
@@ -118,13 +166,18 @@ brew bundle cleanup --force --file=Brewfile
 # SHELL & DOTFILES
 # ============================================================================
 
-# prezto
+# prezto - pinned to specific commit for security
+PREZTO_COMMIT="56669270988c5e32422643ec9e0562d1f3c6a0b8"
 if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  zsh << 'EOF'
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  echo "Installing Prezto (commit: ${PREZTO_COMMIT:0:8})..."
+  zsh << EOF
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "\${ZDOTDIR:-\$HOME}/.zprezto"
+cd "\${ZDOTDIR:-\$HOME}/.zprezto"
+git checkout "$PREZTO_COMMIT"
+git submodule update --init --recursive
 setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for rcfile in "\${ZDOTDIR:-\$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -sf "\$rcfile" "\${ZDOTDIR:-\$HOME}/.\${rcfile:t}"
 done
 EOF
 fi
@@ -184,10 +237,10 @@ install_go_packages
 # ============================================================================
 
 # kubectl aliases
-download_if_missing "$HOME/.kubectl_aliases" "https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases"
+download_if_missing "$HOME/.kubectl_aliases" "$KUBECTL_ALIASES_URL" "$KUBECTL_ALIASES_SHA256"
 
 # whisper model
-download_if_missing "$HOME/.local/share/whisper/ggml-base.en.bin" "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin"
+download_if_missing "$HOME/.local/share/whisper/ggml-base.en.bin" "$WHISPER_MODEL_URL" "$WHISPER_MODEL_SHA256"
 
 if false; then
  # latex and writing tools
