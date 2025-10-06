@@ -55,7 +55,7 @@ install_asdf_language() {
 
   # Set as global version
   if [ "$(asdf current "$language" 2>/dev/null | awk '{print $2}')" != "$version" ]; then
-    asdf global "$language" "$version"
+    asdf set "$language" "$version"
   fi
 }
 
