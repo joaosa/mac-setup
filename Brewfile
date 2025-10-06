@@ -43,8 +43,6 @@ brew "pv"
 
 # File watching
 brew "watch"
-brew "watchexec"
-brew "watchman"
 brew "fswatch"
 
 # Navigation
