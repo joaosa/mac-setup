@@ -270,9 +270,13 @@ fi
 log_section "2" "5" "HOMEBREW PACKAGES & CASKS"
 
 # Install from Brewfile
-log_info "Installing packages from Brewfile..."
-brew bundle --file=Brewfile
-log_success "Brewfile packages installed"
+if brew bundle check --file=Brewfile >/dev/null 2>&1; then
+  log_skip "All Brewfile packages already installed"
+else
+  log_info "Installing packages from Brewfile..."
+  brew bundle --file=Brewfile
+  log_success "Brewfile packages installed"
+fi
 
 # Pin packages to prevent auto-updates
 log_info "Pinning Homebrew packages..."
