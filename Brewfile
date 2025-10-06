@@ -1,6 +1,5 @@
 # Third-party taps - Review before installing
 tap "arl/arl"        # gitmux - Git integration for tmux status bar
-tap "derailed/k9s"   # k9s - Kubernetes cluster management CLI
 
 # Development tools
 brew "git"
@@ -111,7 +110,7 @@ brew "kubectl"
 brew "kubeseal"
 brew "kubectx"
 brew "k3d"
-brew "derailed/k9s/k9s"
+brew "k9s"
 
 # Fonts
 cask "font-sauce-code-pro-nerd-font"
