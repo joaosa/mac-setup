@@ -284,8 +284,9 @@ pin_brew_packages
 
 # Clean up packages not in Brewfile
 log_info "Checking for packages to clean up..."
-if brew bundle cleanup --file=Brewfile 2>&1 | grep -q "Would uninstall"; then
-  brew bundle cleanup --force --file=Brewfile
+cleanup_output=$(brew bundle cleanup --force --file=Brewfile 2>&1)
+if echo "$cleanup_output" | grep -qE "(Uninstall|Untap)"; then
+  echo "$cleanup_output"
   log_success "Cleanup complete"
 else
   log_skip "No packages to clean up"
