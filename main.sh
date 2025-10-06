@@ -316,15 +316,19 @@ else
   log_skip "Prezto already installed"
 fi
 
-# dotfiles
+# dotfiles - use master branch as stable
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
+DOTFILES_BRANCH="master"
+
 if [ ! -d "$DOTFILES_DIR" ]; then
-  log_info "Cloning dotfiles repository..."
-  ghq get -u https://github.com/joaosa/dotfiles
+  log_info "Cloning dotfiles repository (branch: $DOTFILES_BRANCH)..."
+  git clone --branch "$DOTFILES_BRANCH" https://github.com/joaosa/dotfiles "$DOTFILES_DIR"
   log_success "Cloned dotfiles"
 else
-  log_info "Updating dotfiles..."
-  git -C "$DOTFILES_DIR" pull --quiet || true
+  log_info "Updating dotfiles from $DOTFILES_BRANCH branch..."
+  git -C "$DOTFILES_DIR" fetch origin
+  git -C "$DOTFILES_DIR" checkout "$DOTFILES_BRANCH"
+  git -C "$DOTFILES_DIR" pull origin "$DOTFILES_BRANCH" --quiet || true
   log_success "Updated dotfiles"
 fi
 
