@@ -319,25 +319,41 @@ fi
 # dotfiles - use master branch as stable
 DOTFILES_DIR=~/ghq/github.com/joaosa/dotfiles
 DOTFILES_BRANCH="master"
+DOTFILES_CHANGED=false
 
 if [ ! -d "$DOTFILES_DIR" ]; then
   log_info "Cloning dotfiles repository (branch: $DOTFILES_BRANCH)..."
   git clone --branch "$DOTFILES_BRANCH" https://github.com/joaosa/dotfiles "$DOTFILES_DIR"
   log_success "Cloned dotfiles"
+  DOTFILES_CHANGED=true
 else
+  # Track current commit before update
+  old_commit=$(git -C "$DOTFILES_DIR" rev-parse HEAD 2>/dev/null)
+
   log_info "Updating dotfiles from $DOTFILES_BRANCH branch..."
   git -C "$DOTFILES_DIR" fetch origin
   git -C "$DOTFILES_DIR" checkout "$DOTFILES_BRANCH"
   git -C "$DOTFILES_DIR" pull origin "$DOTFILES_BRANCH" --quiet || true
-  log_success "Updated dotfiles"
+
+  new_commit=$(git -C "$DOTFILES_DIR" rev-parse HEAD 2>/dev/null)
+
+  if [ "$old_commit" != "$new_commit" ]; then
+    log_success "Updated dotfiles"
+    DOTFILES_CHANGED=true
+  else
+    log_skip "Dotfiles already up to date"
+  fi
 fi
 
-# Stow dotfiles (restow to ensure idempotency)
-# Use array to properly handle directory names with spaces
-log_info "Installing dotfiles with stow..."
-mapfile -t stow_dirs < <(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
-stow -d "$DOTFILES_DIR" -t "$HOME" --restow "${stow_dirs[@]}"
-log_success "Installed dotfiles"
+# Stow dotfiles only if changed
+if [ "$DOTFILES_CHANGED" = true ]; then
+  log_info "Installing dotfiles with stow..."
+  mapfile -t stow_dirs < <(find "$DOTFILES_DIR" -maxdepth 1 -type d -not -path '*/.*' -exec basename {} \; | grep -v dotfiles)
+  stow -d "$DOTFILES_DIR" -t "$HOME" --restow "${stow_dirs[@]}"
+  log_success "Installed dotfiles"
+else
+  log_skip "Dotfiles unchanged, skipping stow"
+fi
 
 # fzf
 if [ ! -f ~/.fzf.bash ] && [ ! -f ~/.fzf.zsh ]; then
