@@ -89,6 +89,7 @@ brew "ansible"
 brew "delve"
 brew "luarocks"
 brew "rustup"
+brew "pkg-config"
 
 # Recording
 brew "asciinema"
