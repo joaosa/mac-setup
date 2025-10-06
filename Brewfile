@@ -133,7 +133,7 @@ cask "signal"
 cask "discord"
 
 # Security & Privacy
-cask "mullvadvpn"
+cask "mullvad-vpn"
 
 # 3D Printing
 cask "orcaslicer"
@@ -142,14 +142,14 @@ cask "orcaslicer"
 cask "spotify"
 
 # Development
-cask "docker"
+cask "docker-desktop"
 
 # Distributed storage
-cask "ipfs"
+cask "ipfs-desktop"
 
 # Browsers
 cask "firefox@developer-edition"
 
 # Sync
-cask "syncthing"
+cask "syncthing-app"
 cask "google-drive"
