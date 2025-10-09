@@ -425,10 +425,25 @@ log_info "Installing Go packages..."
 install_go_packages
 
 # ============================================================================
+# SERVICES
+# ============================================================================
+
+log_section "5" "6" "SERVICES"
+
+# syncthing - start as background service
+if ! brew services list | grep syncthing | grep -q started; then
+  log_info "Starting Syncthing service..."
+  brew services start syncthing
+  log_success "Started Syncthing service"
+else
+  log_skip "Syncthing service already running"
+fi
+
+# ============================================================================
 # CONFIGURATION FILES
 # ============================================================================
 
-log_section "5" "5" "CONFIGURATION FILES"
+log_section "6" "6" "CONFIGURATION FILES"
 
 # kubectl aliases
 download_if_missing "$HOME/.kubectl_aliases" "$KUBECTL_ALIASES_URL" "$KUBECTL_ALIASES_SHA256"

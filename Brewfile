@@ -145,5 +145,5 @@ cask "ipfs-desktop"
 cask "firefox@developer-edition"
 
 # Sync
-cask "syncthing-app"
+brew "syncthing"
 cask "google-drive"
