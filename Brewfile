@@ -52,6 +52,7 @@ brew "fzf"
 # Image processing
 brew "imagemagick"
 brew "pngquant"
+brew "tesseract"
 
 # Modern CLI tools
 brew "starship"
