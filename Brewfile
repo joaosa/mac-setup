@@ -109,6 +109,9 @@ brew "kubectx"
 brew "k3d"
 brew "k9s"
 
+# Cloud
+brew "azure-cli"
+
 # Fonts
 cask "font-sauce-code-pro-nerd-font"
 
