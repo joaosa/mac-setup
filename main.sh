@@ -430,13 +430,25 @@ install_go_packages
 
 log_section "5" "6" "SERVICES"
 
+# syncthing - enable built-in HTTPS
+SYNCTHING_CONFIG="$HOME/Library/Application Support/Syncthing/config.xml"
+if [ -f "$SYNCTHING_CONFIG" ]; then
+  if grep -q '<gui enabled="true" tls="false"' "$SYNCTHING_CONFIG"; then
+    log_info "Enabling Syncthing HTTPS..."
+    sed -i '' 's/<gui enabled="true" tls="false"/<gui enabled="true" tls="true"/' "$SYNCTHING_CONFIG"
+    log_success "Enabled Syncthing HTTPS"
+  else
+    log_skip "Syncthing HTTPS already enabled"
+  fi
+fi
+
 # syncthing - start as background service
-if ! brew services list | grep syncthing | grep -q started; then
-  log_info "Starting Syncthing service..."
+if ! brew services list | grep -q "syncthing.*started"; then
+  log_info "Starting syncthing service..."
   brew services start syncthing
-  log_success "Started Syncthing service"
+  log_success "Started syncthing service"
 else
-  log_skip "Syncthing service already running"
+  log_skip "syncthing service already running"
 fi
 
 # ============================================================================
