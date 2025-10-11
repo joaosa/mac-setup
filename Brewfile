@@ -25,6 +25,7 @@ brew "git-delta"
 brew "git-secret"
 brew "git-crypt"
 brew "gitmux"
+brew "gitleaks"
 
 # System monitoring
 brew "htop"
