@@ -65,6 +65,25 @@ log_section() {
   echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 }
 
+# Message grouping for cleaner output
+# Usage:
+#   declare -a skip_items=()
+#   skip_items+=("item1")
+#   log_skip_grouped "Already installed" "${skip_items[@]}"
+log_skip_grouped() {
+  local message="$1"
+  shift
+  local items=("$@")
+  local count="${#items[@]}"
+
+  if [ "$count" -eq 0 ]; then
+    return
+  fi
+
+  echo -e "${YELLOW}⊘${RESET}  $message: ${items[*]}"
+  ((ITEMS_SKIPPED += count)) || true
+}
+
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
@@ -110,6 +129,7 @@ install_asdf_language() {
   local language="$1"
   local repo="$2"
   local version="${3:-$(get_tool_version "$language")}"
+  local skipped=false
 
   if [ -z "$version" ]; then
     log_error "No version found for $language"
@@ -122,7 +142,7 @@ install_asdf_language() {
     asdf plugin add "$language" "$repo"
     log_success "Added asdf plugin: $language"
   else
-    log_skip "asdf plugin already exists: $language"
+    skipped=true
   fi
 
   # Install version if not present
@@ -131,13 +151,21 @@ install_asdf_language() {
     asdf install "$language" "$version"
     log_success "Installed $language $version"
   else
-    log_skip "$language $version already installed"
+    if [ "$skipped" = true ]; then
+      # Both plugin and version already exist
+      log_skip "$language $version (plugin and version already installed)"
+    else
+      # Only version already exists (we just added the plugin)
+      log_skip "$language $version already installed"
+    fi
   fi
 }
 
 # Install go packages from array
 # Usage: install_go_packages
 install_go_packages() {
+  local -a already_installed=()
+
   for package in "${GO_PACKAGES[@]}"; do
     local binary_name=$(echo "$package" | awk -F'/' '{print $NF}' | awk -F'@' '{print $1}')
     if ! command -v "$binary_name" >/dev/null 2>&1; then
@@ -145,14 +173,19 @@ install_go_packages() {
       go install "$package"
       log_success "Installed Go package: $binary_name"
     else
-      log_skip "Go package already installed: $binary_name"
+      already_installed+=("$binary_name")
     fi
   done
+
+  # Show grouped skip message
+  log_skip_grouped "Go packages already installed" "${already_installed[@]}"
 }
 
 # Install npm packages from array with version locking
 # Usage: install_npm_packages
 install_npm_packages() {
+  local -a already_installed=()
+
   for package in "${NPM_PACKAGES[@]}"; do
     local package_name=$(echo "$package" | awk -F'@' '{print $1}')
     local package_version=$(echo "$package" | awk -F'@' '{print $2}')
@@ -163,9 +196,12 @@ install_npm_packages() {
       npm install -g "$package"
       log_success "Installed npm package: $package_name@$package_version"
     else
-      log_skip "npm package already installed: $package_name@$package_version"
+      already_installed+=("$package_name@$package_version")
     fi
   done
+
+  # Show grouped skip message
+  log_skip_grouped "npm packages already installed" "${already_installed[@]}"
 }
 
 # Pin all homebrew packages to prevent auto-updates
@@ -173,6 +209,7 @@ install_npm_packages() {
 pin_brew_packages() {
   # Get list of already pinned packages once (not in loop for performance)
   local pinned_packages=$(brew list --pinned)
+  local -a already_pinned=()
 
   # Pin all installed formulae
   for package in $(brew list --formula); do
@@ -180,9 +217,12 @@ pin_brew_packages() {
       brew pin "$package" >/dev/null 2>&1
       log_success "Pinned: $package"
     else
-      log_skip "Already pinned: $package"
+      already_pinned+=("$package")
     fi
   done
+
+  # Show grouped skip message
+  log_skip_grouped "Already pinned" "${already_pinned[@]}"
 }
 
 # Download file if not exists with SHA256 checksum verification
