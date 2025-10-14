@@ -128,7 +128,6 @@ cask "alacritty"
 cask "obsidian"
 
 # Communication
-cask "slack"
 cask "signal"
 cask "discord"
 
