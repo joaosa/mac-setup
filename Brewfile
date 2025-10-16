@@ -18,7 +18,6 @@ brew "asdf"
 brew "direnv"
 
 # Git tools
-brew "hub"
 brew "gh"
 brew "git-extras"
 brew "git-delta"
