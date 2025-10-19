@@ -159,12 +159,16 @@ install_asdf_language() {
       log_skip "$language $version already installed"
     fi
   fi
+
+  # Regenerate shims to handle asdf reinstall scenarios
+  asdf reshim "$language"
 }
 
 # Install go packages from array
 # Usage: install_go_packages
 install_go_packages() {
   local -a already_installed=()
+  local installed_count=0
 
   for package in "${GO_PACKAGES[@]}"; do
     local binary_name=$(echo "$package" | awk -F'/' '{print $NF}' | awk -F'@' '{print $1}')
@@ -172,6 +176,7 @@ install_go_packages() {
       log_info "Installing Go package: $package"
       go install "$package"
       log_success "Installed Go package: $binary_name"
+      ((installed_count++))
     else
       already_installed+=("$binary_name")
     fi
@@ -179,12 +184,18 @@ install_go_packages() {
 
   # Show grouped skip message
   log_skip_grouped "Go packages already installed" "${already_installed[@]}"
+
+  # Regenerate shims if any packages were installed
+  if [ "$installed_count" -gt 0 ]; then
+    asdf reshim golang
+  fi
 }
 
 # Install npm packages from array with version locking
 # Usage: install_npm_packages
 install_npm_packages() {
   local -a already_installed=()
+  local installed_count=0
 
   for package in "${NPM_PACKAGES[@]}"; do
     local package_name=$(echo "$package" | awk -F'@' '{print $1}')
@@ -195,6 +206,7 @@ install_npm_packages() {
       log_info "Installing npm package: $package"
       npm install -g "$package"
       log_success "Installed npm package: $package_name@$package_version"
+      ((installed_count++))
     else
       already_installed+=("$package_name@$package_version")
     fi
@@ -202,6 +214,11 @@ install_npm_packages() {
 
   # Show grouped skip message
   log_skip_grouped "npm packages already installed" "${already_installed[@]}"
+
+  # Regenerate shims if any packages were installed
+  if [ "$installed_count" -gt 0 ]; then
+    asdf reshim nodejs
+  fi
 }
 
 # Pin all homebrew packages to prevent auto-updates
