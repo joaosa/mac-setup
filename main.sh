@@ -164,60 +164,76 @@ install_asdf_language() {
   asdf reshim "$language"
 }
 
-# Install go packages from array
-# Usage: install_go_packages
-install_go_packages() {
+# Install packages for asdf-managed languages
+# Usage: install_asdf_packages "golang" "${GO_PACKAGES[@]}"
+#        install_asdf_packages "nodejs" "${NPM_PACKAGES[@]}"
+install_asdf_packages() {
+  local language="$1"
+  shift
+  local packages=("$@")
+
   local -a already_installed=()
   local installed_count=0
 
-  for package in "${GO_PACKAGES[@]}"; do
-    local binary_name=$(echo "$package" | awk -F'/' '{print $NF}' | awk -F'@' '{print $1}')
-    if ! command -v "$binary_name" >/dev/null 2>&1; then
-      log_info "Installing Go package: $package"
-      go install "$package"
-      log_success "Installed Go package: $binary_name"
-      ((installed_count++))
+  for package in "${packages[@]}"; do
+    local binary_name=""
+    local package_name=""
+    local package_version=""
+    local display_name=""
+    local is_installed=false
+
+    # Parse package info and check if installed (language-specific)
+    case "$language" in
+      "golang")
+        binary_name=$(echo "$package" | awk -F'/' '{print $NF}' | awk -F'@' '{print $1}')
+        display_name="$binary_name"
+
+        if command -v "$binary_name" >/dev/null 2>&1; then
+          is_installed=true
+        fi
+        ;;
+      "nodejs")
+        package_name=$(echo "$package" | awk -F'@' '{print $1}')
+        package_version=$(echo "$package" | awk -F'@' '{print $2}')
+        display_name="$package_name@$package_version"
+
+        if npm list -g "$package_name@$package_version" --depth=0 >/dev/null 2>&1; then
+          is_installed=true
+        fi
+        ;;
+      *)
+        log_error "Unsupported language: $language"
+        return 1
+        ;;
+    esac
+
+    # Install or skip
+    if [ "$is_installed" = true ]; then
+      already_installed+=("$display_name")
     else
-      already_installed+=("$binary_name")
+      log_info "Installing $language package: $package"
+
+      # Install package (language-specific)
+      case "$language" in
+        "golang")
+          go install "$package"
+          ;;
+        "nodejs")
+          npm install -g "$package"
+          ;;
+      esac
+
+      log_success "Installed $language package: $display_name"
+      ((installed_count++))
     fi
   done
 
   # Show grouped skip message
-  log_skip_grouped "Go packages already installed" "${already_installed[@]}"
+  log_skip_grouped "$language packages already installed" "${already_installed[@]}"
 
   # Regenerate shims if any packages were installed
   if [ "$installed_count" -gt 0 ]; then
-    asdf reshim golang
-  fi
-}
-
-# Install npm packages from array with version locking
-# Usage: install_npm_packages
-install_npm_packages() {
-  local -a already_installed=()
-  local installed_count=0
-
-  for package in "${NPM_PACKAGES[@]}"; do
-    local package_name=$(echo "$package" | awk -F'@' '{print $1}')
-    local package_version=$(echo "$package" | awk -F'@' '{print $2}')
-
-    # Check if package is installed with correct version
-    if ! npm list -g "$package_name@$package_version" --depth=0 >/dev/null 2>&1; then
-      log_info "Installing npm package: $package"
-      npm install -g "$package"
-      log_success "Installed npm package: $package_name@$package_version"
-      ((installed_count++))
-    else
-      already_installed+=("$package_name@$package_version")
-    fi
-  done
-
-  # Show grouped skip message
-  log_skip_grouped "npm packages already installed" "${already_installed[@]}"
-
-  # Regenerate shims if any packages were installed
-  if [ "$installed_count" -gt 0 ]; then
-    asdf reshim nodejs
+    asdf reshim "$language"
   fi
 }
 
@@ -472,14 +488,14 @@ install_asdf_language "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
 # npm packages
 log_info "Installing npm packages..."
-install_npm_packages
+install_asdf_packages "nodejs" "${NPM_PACKAGES[@]}"
 
 # golang
 install_asdf_language "golang" "https://github.com/asdf-community/asdf-golang.git"
 
 # go packages
 log_info "Installing Go packages..."
-install_go_packages
+install_asdf_packages "golang" "${GO_PACKAGES[@]}"
 
 # ============================================================================
 # SERVICES
