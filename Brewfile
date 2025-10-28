@@ -93,6 +93,7 @@ brew "ansible"
 brew "delve"
 brew "luarocks"
 brew "rustup"
+brew "cargo-watch"
 brew "pkg-config"
 brew "uv"
 
