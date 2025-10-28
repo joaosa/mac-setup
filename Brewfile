@@ -79,6 +79,8 @@ brew "ykman"
 brew "gnupg"
 brew "pwgen"
 brew "mkcert"
+brew "sops"
+brew "age"
 
 # Fun
 brew "fortune"

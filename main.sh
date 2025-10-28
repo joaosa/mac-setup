@@ -91,6 +91,7 @@ log_skip_grouped() {
 GO_PACKAGES=(
   "github.com/x-motemen/gore/cmd/gore@v0.6.1"
   "github.com/cirocosta/asciinema-edit@v0.2.0"
+  "github.com/Mic92/ssh-to-age/cmd/ssh-to-age@latest"
 )
 
 NPM_PACKAGES=(
