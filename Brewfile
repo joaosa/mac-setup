@@ -94,6 +94,7 @@ brew "delve"
 brew "luarocks"
 brew "rustup"
 brew "pkg-config"
+brew "uv"
 
 # Recording
 brew "asciinema"
