@@ -93,6 +93,7 @@ brew "delve"
 brew "luarocks"
 brew "rustup"
 brew "cargo-watch"
+brew "cargo-llvm-cov"
 brew "pkg-config"
 brew "uv"
 
