@@ -94,6 +94,8 @@ brew "luarocks"
 brew "rustup"
 brew "cargo-watch"
 brew "cargo-llvm-cov"
+brew "cargo-geiger"
+brew "cargo-bloat"
 brew "pkg-config"
 brew "uv"
 
