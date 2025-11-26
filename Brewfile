@@ -96,6 +96,7 @@ brew "cargo-watch"
 brew "cargo-llvm-cov"
 brew "cargo-geiger"
 brew "cargo-bloat"
+brew "cargo-nextest"
 brew "pkg-config"
 brew "uv"
 
