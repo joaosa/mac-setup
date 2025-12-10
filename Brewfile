@@ -85,6 +85,8 @@ brew "sops"
 brew "fortune"
 
 # Container tools
+brew "docker"
+brew "colima"
 brew "dive"
 
 # Programming languages & tools
@@ -140,14 +142,12 @@ cask "discord"
 # Security & Privacy
 cask "mullvad-vpn"
 
-# 3D Printing
+# 3D Printing & Design
 cask "orcaslicer"
+cask "blender"
 
 # Media
 cask "spotify"
-
-# Development
-cask "docker-desktop"
 
 # Distributed storage
 cask "ipfs-desktop"
