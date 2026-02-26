@@ -111,6 +111,7 @@ brew "cargo-llvm-cov"
 brew "cargo-geiger"
 brew "cargo-bloat"
 brew "cargo-nextest"
+brew "sccache"
 brew "pkg-config"
 brew "uv"
 
