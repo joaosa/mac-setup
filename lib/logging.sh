@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
-# Common logging functions for mac-setup scripts
+# Common logging functions for bootstrap scripts
 
-# Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-RESET='\033[0m'
+# Colors (disabled per https://no-color.org/ or when not a terminal)
+if [ -n "${NO_COLOR+set}" ] || ! [ -t 1 ]; then
+  RED='' GREEN='' YELLOW='' BLUE='' CYAN='' RESET=''
+else
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  BLUE='\033[0;34m'
+  CYAN='\033[0;36m'
+  RESET='\033[0m'
+fi
 
 # Tracking variables (can be reset by sourcing script)
 START_TIME="${START_TIME:-$(date +%s)}"
 ITEMS_INSTALLED="${ITEMS_INSTALLED:-0}"
 ITEMS_SKIPPED="${ITEMS_SKIPPED:-0}"
+ITEMS_WARNED="${ITEMS_WARNED:-0}"
 ITEMS_FAILED="${ITEMS_FAILED:-0}"
 
 log_info() {
@@ -31,11 +36,22 @@ log_skip() {
 
 log_warn() {
   echo -e "${YELLOW}!${RESET}  $*"
+  ((ITEMS_WARNED++)) || true
 }
 
 log_error() {
   echo -e "${RED}x${RESET}  $*" >&2
   ((ITEMS_FAILED++)) || true
+}
+
+# Error/warning detail line (indented, no counter increment)
+log_detail() {
+  echo -e "   $*" >&2
+}
+
+die() {
+  log_error "$@"
+  exit 1
 }
 
 log_section() {
