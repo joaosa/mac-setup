@@ -6,6 +6,7 @@ brew "zsh"
 brew "neovim"
 brew "tmux"
 brew "sesh"
+brew "opencode"
 
 # Core utilities
 brew "parallel"
