@@ -112,6 +112,7 @@ brew "cargo-geiger"
 brew "cargo-bloat"
 brew "cargo-nextest"
 brew "sccache"
+brew "just"
 brew "pkg-config"
 brew "uv"
 
