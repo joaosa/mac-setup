@@ -79,6 +79,7 @@ brew "tailscale"
 # Benchmarking
 brew "hyperfine"
 brew "gnu-units"
+brew "vegeta"
 
 # Security
 brew "ykman"
