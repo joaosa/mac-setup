@@ -97,6 +97,7 @@ brew "fortune"
 
 # Container tools
 brew "docker"
+brew "docker-buildx"
 brew "colima"
 brew "dive"
 
