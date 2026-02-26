@@ -5,6 +5,7 @@ brew "stow"
 brew "zsh"
 brew "neovim"
 brew "tmux"
+brew "sesh"
 
 # Core utilities
 brew "parallel"
