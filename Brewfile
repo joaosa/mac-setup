@@ -153,6 +153,7 @@ cask "obsidian"
 # Communication
 cask "signal"
 cask "discord"
+cask "slack"
 
 # Security & Privacy
 cask "mullvad-vpn"
