@@ -74,6 +74,7 @@ brew "tcptraceroute"
 brew "mtr"
 brew "telnet"
 brew "nmap"
+brew "tailscale"
 
 # Benchmarking
 brew "hyperfine"
