@@ -45,6 +45,7 @@ brew "jd"
 # Utilities
 brew "urlview"
 brew "pv"
+brew "terminal-notifier"
 
 # File watching
 brew "watch"
