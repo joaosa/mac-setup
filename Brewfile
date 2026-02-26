@@ -7,6 +7,7 @@ brew "neovim"
 brew "tmux"
 brew "sesh"
 brew "opencode"
+brew "ollama"
 
 # Core utilities
 brew "parallel"
