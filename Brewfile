@@ -147,6 +147,7 @@ cask "hammerspoon"
 cask "alacritty"
 
 # Productivity
+cask "homerow"
 cask "obsidian"
 
 # Communication
