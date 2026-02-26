@@ -8,6 +8,7 @@ brew "tmux"
 brew "sesh"
 brew "opencode"
 brew "ollama"
+brew "shellcheck"
 
 # Core utilities
 brew "parallel"
