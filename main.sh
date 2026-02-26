@@ -440,6 +440,40 @@ install_asdf_language "golang" "https://github.com/asdf-community/asdf-golang.gi
 log_info "Installing Go packages..."
 install_asdf_packages "golang" "${GO_PACKAGES[@]}"
 
+# cargo packages (OpenPGP card tools)
+CARGO_PACKAGES=(
+  "openpgp-card-tools"      # oct - YubiKey/OpenPGP card management
+  "openpgp-card-tool-git"   # oct-git - Git signing without gpg-agent
+)
+
+log_info "Installing Cargo packages..."
+for pkg in "${CARGO_PACKAGES[@]}"; do
+  # oct binaries: openpgp-card-tools -> oct, openpgp-card-tool-git -> oct-git
+  case "$pkg" in
+    openpgp-card-tools) bin_name="oct" ;;
+    openpgp-card-tool-git) bin_name="oct-git" ;;
+    *) bin_name="${pkg##*/}" ;;
+  esac
+
+  if command -v "$bin_name" >/dev/null 2>&1; then
+    log_skip "$pkg ($bin_name) already installed"
+  else
+    log_info "Installing $pkg..."
+    if [ "$DRY_RUN" = "false" ]; then
+      # openpgp-card-tool-git requires explicit framework linking on macOS
+      # due to mac-notification-sys not linking AppKit/CoreServices properly
+      if [ "$pkg" = "openpgp-card-tool-git" ]; then
+        RUSTFLAGS="-C link-arg=-framework -C link-arg=AppKit -C link-arg=-framework -C link-arg=CoreServices" cargo install "$pkg"
+      else
+        cargo install "$pkg"
+      fi
+      log_success "Installed $pkg"
+    else
+      log_info "[DRY RUN] Would install $pkg"
+    fi
+  fi
+done
+
 # ============================================================================
 # SERVICES
 # ============================================================================
