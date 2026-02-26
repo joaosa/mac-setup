@@ -87,6 +87,10 @@ brew "gnupg"
 brew "pwgen"
 brew "mkcert"
 brew "sops"
+brew "age"                # Modern encryption (sops backend)
+brew "wireguard-tools"    # WireGuard key generation
+brew "pinentry-mac"       # GPG PIN entry for YubiKey
+brew "qrencode"           # QR code generation for WireGuard
 
 # Fun
 brew "fortune"
