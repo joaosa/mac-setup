@@ -42,7 +42,7 @@ check_version() {
   fi
   local actual
   actual=$("$binary" --version 2>/dev/null | head -1 || echo "unknown")
-  if echo "$actual" | grep -q "$expected"; then
+  if echo "$actual" | grep -qF "$expected"; then
     log_success "$description $expected"
   else
     log_warn "$description: expected $expected, got $actual"

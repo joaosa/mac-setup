@@ -187,7 +187,7 @@ install_asdf_packages() {
     fi
   done
 
-  log_skip_grouped "$language packages already installed" "${already_installed[@]}"
+  log_skip_grouped "$language packages already installed" "${already_installed[@]+"${already_installed[@]}"}"
 
   if ! is_dry_run && [ "$installed_count" -gt 0 ]; then
     asdf reshim "$language"
@@ -239,7 +239,7 @@ install_cargo_packages() {
     fi
   done
 
-  log_skip_grouped "Cargo packages already installed" "${already_installed[@]}"
+  log_skip_grouped "Cargo packages already installed" "${already_installed[@]+"${already_installed[@]}"}"
 }
 
 # ============================================================================
@@ -263,7 +263,7 @@ pin_brew_packages() {
     fi
   done
 
-  log_skip_grouped "Already pinned" "${already_pinned[@]}"
+  log_skip_grouped "Already pinned" "${already_pinned[@]+"${already_pinned[@]}"}"
 }
 
 # ============================================================================
